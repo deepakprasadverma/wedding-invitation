@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Deepanshu &amp; Deepanjali — Shubh Vivah Wedding Invitation</title>
+  <meta name="description" content="You're cordially invited to celebrate the wedding ceremony of Deepanshu Pratap &amp; Deepanjali Kumari at Hotel Vinayak, Hazaribagh on January 3, 2027.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/royal-seal.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- Floating Particle & Confetti Canvas -->
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Top Floating Controls Toolbar -->
+  <nav class="floating-toolbar" aria-label="Controls">
+    <!-- Music Player Toggle -->
+    <button id="musicToggleBtn" class="tool-btn" title="Toggle Wedding Music">
+      <span>🎵</span>
+      <span style="font-size: 11px;">Music</span>
+      <div id="musicVisualizer" class="sound-visualizer paused">
+        <span class="sound-bar"></span>
+        <span class="sound-bar"></span>
+        <span class="sound-bar"></span>
+        <span class="sound-bar"></span>
+      </div>
+    </button>
+
+    <!-- Language Selector Pills -->
+    <div style="display: flex; gap: 4px; align-items: center; border-left: 1px solid rgba(212,175,55,0.3); padding-left: 8px;">
+      <button class="tool-btn lang-pill active" data-lang="en">EN</button>
+      <button class="tool-btn lang-pill" data-lang="ar">العربية</button>
+      <button class="tool-btn lang-pill" data-lang="hi">हिन्दी</button>
+    </div>
+
+    <!-- Viewport Frame Switcher -->
+    <button id="viewportToggleBtn" class="tool-btn" style="border-left: 1px solid rgba(212,175,55,0.3); padding-left: 8px;" title="Switch Between Mobile and Expanded Views">
+      💻 Expand View
+    </button>
+  </nav>
+
+  <!-- Device Frame Viewport Container -->
+  <main id="appViewport" class="app-viewport">
+    <div class="invitation-container">
+
+      <!-- ========================================================
+           GATE OVERLAY (INITIAL TAP TO OPEN SCREEN)
+           ======================================================== -->
+      <div id="gateOverlay" class="gate-overlay">
+        <!-- Left Sage Green Curtain -->
+        <div class="curtain-panel curtain-left"></div>
+        <!-- Right Sage Green Curtain -->
+        <div class="curtain-panel curtain-right"></div>
+        <!-- Vertical Gold Ribbon/Zipper -->
+        <div class="golden-seam"></div>
+
+        <!-- Center Royal Seal Badge -->
+        <div id="mainSealBtn" class="seal-wrapper" role="button" tabindex="0" aria-label="Tap to open wedding invitation">
+          <img src="assets/royal-seal.svg" alt="Royal Wedding Badge - Tap to Open" class="seal-img">
+          <div class="tap-hint" data-i18n="tapToOpen">TAP TO OPEN</div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           INNER INVITATION PAGE
+           ======================================================== -->
+      <div class="invitation-body">
+        
+        <!-- Subtle Top Brand Header -->
+        <header class="inner-top-nav">
+          <span>✨ THE ROYAL UNION</span>
+          <span>EST. 2026</span>
+        </header>
+
+        <!-- HERO SECTION (Terrace, Fountain & Couple Names) -->
+        <section class="hero-section">
+          <!-- Palace Terrace & Fountain SVG -->
+          <img src="assets/palace-fountain.svg" alt="Palace Courtyard and Fountain" class="palace-illustration">
+
+          <p class="hero-subtitle" data-i18n="coupleSubtitle">Weds • Shubh Vivah</p>
+
+          <div class="couple-names-wrap">
+            <!-- Groom -->
+            <div class="groom-box">
+              <h1 class="person-name" data-i18n="groomName">Deepanshu Pratap</h1>
+              <p class="person-parents" data-i18n="groomParents">Son of Smt. &amp; Shri Pratap</p>
+              <p class="person-qual" data-i18n="groomQual">The Groom</p>
+            </div>
+
+            <span class="name-ampersand">weds</span>
+
+            <!-- Bride -->
+            <div class="bride-box">
+              <h2 class="person-name" data-i18n="brideName">Deepanjali Kumari</h2>
+              <p class="person-parents" data-i18n="brideParents">Daughter of Smt. &amp; Shri Kumari</p>
+              <p class="person-qual" data-i18n="brideQual">The Bride</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- INDIAN BILINGUAL WELCOME INVITATION CARD (HINDI & ENGLISH) -->
+        <article class="welcome-note-card">
+          <!-- Auspicious Vedic Shloka Header -->
+          <div style="font-family: 'Rozha One', 'Amiri', serif; color: var(--gold-dark); font-size: 14px; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px;">
+            ॥ ॐ श्री गणेशाय नमः ॥
+          </div>
+          <div style="font-family: 'Playfair Display', serif; font-style: italic; color: #88651a; font-size: 12.5px; margin-bottom: 12px; line-height: 1.5;">
+            "॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥"
+          </div>
+
+          <svg class="ornament-flourish" viewBox="0 0 100 20">
+            <path d="M 10,10 Q 50,0 90,10 M 10,10 Q 50,20 90,10 M 50,3 L 50,17" stroke="#d4af37" stroke-width="1.5" fill="none"/>
+            <circle cx="50" cy="10" r="3" fill="#d4af37"/>
+          </svg>
+
+          <!-- Hindi Welcome Message -->
+          <div style="background: #fdfcf9; border-radius: 12px; padding: 14px; margin-bottom: 12px; border-left: 3px solid var(--gold-primary); text-align: left;">
+            <div style="display: flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 11px; font-weight: 700; color: #a07a16; text-transform: uppercase; margin-bottom: 4px;">
+              <span>🇮🇳</span> स्वागत संदेश (हिंदी)
+            </div>
+            <p style="font-family: 'Rozha One', 'Montserrat', serif; font-size: 13.5px; color: #2e362f; line-height: 1.7;">
+              परमपिता परमात्मा एवं पूज्य पूर्वजों के असीम आशीर्वाद से, हम आपको <strong>दीपांशु प्रताप</strong> संग <strong>दीपांजलि कुमारी</strong> के पावन परिणय संस्कार के इस मांगलिक अवसर पर सपरिवार सादर आमंत्रित करते हैं।
+            </p>
+          </div>
+
+          <!-- English Welcome Message -->
+          <div style="background: #fdfcf9; border-radius: 12px; padding: 14px; border-left: 3px solid #526b56; text-align: left;">
+            <div style="display: flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 11px; font-weight: 700; color: #3b523f; text-transform: uppercase; margin-bottom: 4px;">
+              <span>🌸</span> Welcome Message (English)
+            </div>
+            <p style="font-family: var(--font-serif); font-size: 13.5px; color: #333a34; line-height: 1.7;">
+              With the divine grace of the Almighty and blessings of our beloved elders, we cordially invite you and your family to celebrate the auspicious wedding ceremony of <strong>Deepanshu Pratap</strong> and <strong>Deepanjali Kumari</strong> as they unite in holy matrimony.
+            </p>
+          </div>
+
+          <!-- Sanskrit Benediction / Hospitality Note -->
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(212,175,55,0.3);">
+            <p style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: #aa7c11; letter-spacing: 1.5px;">
+              ॥ अतिथि देवो भव: ॥
+            </p>
+            <p class="welcome-closing" style="margin-top: 4px;" data-i18n="welcomeThanks">
+              Your gracious presence and heartfelt blessings will make this auspicious occasion truly unforgettable 🤍
+            </p>
+          </div>
+        </article>
+
+        <!-- SCRATCH TO REVEAL CARD -->
+        <section class="scratch-section">
+          <div class="section-badge">✨ Shubh Vivah Date</div>
+          <h3 class="section-title" data-i18n="scratchTitle">Scratch to Reveal Date</h3>
+          <p class="section-subtitle" data-i18n="scratchSubtitle">Gently scratch the golden heart below to unveil the wedding date</p>
+
+          <div class="scratch-card-container">
+            <!-- Hidden Secret Card Underneath -->
+            <div class="scratch-secret-content">
+              <p class="revealed-tag" data-i18n="revealedTag">Our forever begins</p>
+              
+              <!-- Gold Heart Icon -->
+              <svg class="heart-gold-frame" viewBox="0 0 100 90">
+                <path d="M 50,28 C 50,15 35,5 20,5 C 8,5 0,16 0,28 C 0,55 50,85 50,85 C 50,85 100,55 100,28 C 100,16 92,5 80,5 C 65,5 50,15 50,28 Z" 
+                      fill="none" stroke="#d4af37" stroke-width="3"/>
+                <circle cx="50" cy="45" r="4" fill="#aa7c11"/>
+              </svg>
+
+              <h4 class="revealed-heading" data-i18n="revealedHeading">YOU'RE INVITED!</h4>
+              <p class="revealed-date" data-i18n="revealedDate">January 3, 2027</p>
+              <p class="revealed-day-time" data-i18n="revealedDayTime">Sunday • Auspicious Muhurat 07:00 PM</p>
+
+              <button class="save-the-date-btn save-date-trigger" data-i18n="saveTheDateBtn">
+                📅 Save The Date
+              </button>
+            </div>
+
+            <!-- Scratch Canvas Layer on Top -->
+            <canvas id="scratchCanvas"></canvas>
+          </div>
+
+          <div id="scratchPercentHint" class="scratch-hint-bar" data-i18n="scratchedHint">
+            Rub to scratch with finger or mouse
+          </div>
+        </section>
+
+        <!-- PHOTO MOMENTS CAROUSEL -->
+        <section class="gallery-section">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <img src="assets/gallery-suite.svg" alt="Luxury Wedding Stationery Suite">
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/gallery-rings.svg" alt="Gold Wedding Bands and Solitaire Diamond">
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/gallery-arch.svg" alt="Floral Arch with Fairy Lights and Couple Silhouette">
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/gallery-decor.svg" alt="Royal Wedding Banquet Table &amp; Floral Centerpiece">
+            </div>
+
+            <!-- Carousel Controls -->
+            <button id="carouselPrevBtn" class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
+            <button id="carouselNextBtn" class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
+
+            <!-- Dots -->
+            <div class="carousel-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- LIVE COUNTDOWN TIMER -->
+        <section class="countdown-section">
+          <h3 class="countdown-title" data-i18n="countdownTitle">Counting Down to Shubh Vivah</h3>
+          <div class="timer-grid">
+            <div class="timer-card">
+              <span id="daysNum" class="timer-num">00</span>
+              <span class="timer-label" data-i18n="days">DAYS</span>
+            </div>
+            <div class="timer-card">
+              <span id="hoursNum" class="timer-num">00</span>
+              <span class="timer-label" data-i18n="hours">HOURS</span>
+            </div>
+            <div class="timer-card">
+              <span id="minutesNum" class="timer-num">00</span>
+              <span class="timer-label" data-i18n="minutes">MINUTES</span>
+            </div>
+            <div class="timer-card">
+              <span id="secondsNum" class="timer-num">00</span>
+              <span class="timer-label" data-i18n="seconds">SECONDS</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROGRAM TIMELINE -->
+        <section class="timeline-section">
+          <div style="text-align: center;">
+            <div class="section-badge">🕒 Order of Events</div>
+            <h3 class="section-title" data-i18n="timelineTitle">Wedding Program Timeline</h3>
+            <p class="section-subtitle" data-i18n="timelineSubtitle">Ceremony Schedule &amp; Order of Events</p>
+          </div>
+
+          <div class="timeline-list">
+            <!-- Event 1 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-time" data-i18n="t1Time">06:00 PM</span>
+              <h4 class="timeline-event" data-i18n="t1Event">Baarat &amp; Swagat</h4>
+              <p class="timeline-desc" data-i18n="t1Desc">Grand welcome of Baarat with dhol &amp; shehnai 🤍</p>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-time" data-i18n="t2Time">08:00 PM</span>
+              <h4 class="timeline-event" data-i18n="t2Event">Shubh Varmala (Jaimala)</h4>
+              <p class="timeline-desc" data-i18n="t2Desc">Sacred garland exchange between bride &amp; groom</p>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-time" data-i18n="t3Time">08:30 PM</span>
+              <h4 class="timeline-event" data-i18n="t3Event">Royal Indian Wedding Feast</h4>
+              <p class="timeline-desc" data-i18n="t3Desc">Celebratory banquet &amp; traditional Indian dinner</p>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-time" data-i18n="t4Time">10:30 PM</span>
+              <h4 class="timeline-event" data-i18n="t4Event">Pheras &amp; Kanyadaan (Vidai)</h4>
+              <p class="timeline-desc" data-i18n="t4Desc">Seven sacred vows around the agni kunda &amp; blessings</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRE-WEDDING CELEBRATIONS -->
+        <section class="prewedding-section">
+          <div class="section-badge">🎉 Celebrations</div>
+          <h3 class="section-title" data-i18n="preweddingTitle">Pre-Wedding Celebrations</h3>
+          <p class="section-subtitle" data-i18n="preweddingSubtitle">Join us for the joy, music and colors</p>
+
+          <div class="events-cards-grid">
+            <div class="event-box">
+              <h4 class="event-name" data-i18n="sangeetTitle">Tilak &amp; Ring Ceremony</h4>
+              <p class="event-details" data-i18n="sangeetDesc">Jan 1, 2027 • 5:00 PM • Hotel Vinayak Banquet</p>
+            </div>
+            <div class="event-box">
+              <h4 class="event-name" data-i18n="haldiTitle">Haldi Ceremony</h4>
+              <p class="event-details" data-i18n="haldiDesc">Jan 2, 2027 • 11:00 AM • Family Residence</p>
+            </div>
+            <div class="event-box">
+              <h4 class="event-name" data-i18n="mehendiTitle">Mehendi &amp; Sangeet Night</h4>
+              <p class="event-details" data-i18n="mehendiDesc">Jan 2, 2027 • 6:30 PM • Hotel Vinayak, Hazaribagh</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- VENUE & GOOGLE MAPS INTEGRATION -->
+        <section class="venue-section">
+          <div class="section-badge">📍 Location</div>
+          <h3 class="section-title" data-i18n="venueTitle">Venue &amp; Directions</h3>
+          <p class="section-subtitle" data-i18n="venueSubtitle">Hotel Vinayak, Hazaribagh, Jharkhand</p>
+
+          <div class="venue-card">
+            <!-- OpenStreetMap Preview Embed for Hazaribagh -->
+            <iframe 
+              class="map-embed-frame"
+              title="Venue Map Location"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=85.34%2C23.98%2C85.38%2C24.01&amp;layer=mapnik&amp;marker=23.992%2C85.363"
+              loading="lazy">
+            </iframe>
+
+            <div class="venue-info-box">
+              <h4 class="venue-name" data-i18n="venueName">Hotel Vinayak</h4>
+              <p class="venue-address" data-i18n="venueAddress">Hotel Vinayak, Main Road, Hazaribagh, Jharkhand, India</p>
+
+              <div class="venue-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Vinayak+Hazaribagh+Jharkhand" target="_blank" rel="noopener" class="action-btn filled" data-i18n="openMaps">
+                  🗺️ Open in Maps
+                </a>
+                <button id="copyAddressBtn" class="action-btn" data-i18n="copyAddress">
+                  📋 Copy Address
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DRESS CODE & PALETTE -->
+        <section class="dresscode-section">
+          <div class="section-badge">👗 Attire</div>
+          <h3 class="section-title" data-i18n="dressCodeTitle">Dress Code &amp; Palette</h3>
+
+          <div class="dresscode-box">
+            <div class="dress-category">
+              <h4 class="dress-title" data-i18n="womenTitle">Women</h4>
+              <p class="dress-desc" data-i18n="womenDesc">
+                Elegant traditional Indian attire (Lehenga / Saree / Anarkali in Pastel &amp; Royal tones)
+              </p>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #a3b899;" title="Sage Green"></div>
+                <div class="swatch" style="background: #f7dcdb;" title="Blush Rose"></div>
+                <div class="swatch" style="background: #f6e6aa;" title="Champagne Gold"></div>
+                <div class="swatch" style="background: #d0e1fd;" title="Powder Blue"></div>
+              </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid rgba(212,175,55,0.2); margin: 14px 0;">
+
+            <div class="dress-category">
+              <h4 class="dress-title" data-i18n="menTitle">Men</h4>
+              <p class="dress-desc" data-i18n="menDesc">
+                Traditional Indian formal wear (Sherwani / Kurta Pajama / Bandhgala / Suit)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- AMENITIES: TRANSPORTATION & ACCOMMODATION -->
+        <section class="amenities-section">
+          <div class="amenity-card">
+            <div class="amenity-icon">🚆</div>
+            <h4 class="amenity-title" data-i18n="transportTitle">Transportation &amp; Travel</h4>
+            <p class="amenity-desc" data-i18n="transportDesc">
+              Hazaribagh Town Railway Station &amp; Bus Stand are 10 minutes from Hotel Vinayak.
+            </p>
+          </div>
+
+          <div class="amenity-card">
+            <div class="amenity-icon">🏨</div>
+            <h4 class="amenity-title" data-i18n="hotelTitle">Accommodation</h4>
+            <p class="amenity-desc" data-i18n="hotelDesc">
+              Guest rooms reserved at Hotel Vinayak, Hazaribagh. Guest booking code:
+            </p>
+            <div id="copyPromoBtn" class="promo-code-pill" title="Click to copy promo code">
+              🏷️ <span>VINAYAK2027</span> • Copy
+            </div>
+          </div>
+        </section>
+        </section>
+
+        <!-- GIFTS & BLESSINGS NOTE -->
+        <section class="gifts-section">
+          <div class="gifts-card">
+            <div style="font-size: 26px; margin-bottom: 6px;">🎁</div>
+            <h4 class="section-title" style="font-size: 18px;" data-i18n="giftsTitle">Gifts &amp; Blessings</h4>
+            <p class="welcome-text" style="font-size: 13.5px;" data-i18n="giftsDesc">
+              Your love, prayers and presence are the greatest gifts we could ever ask for. 🤍
+            </p>
+          </div>
+        </section>
+
+        <!-- RSVP FORM -->
+        <section class="rsvp-section">
+          <div class="section-badge">💌 Kindly Respond</div>
+          <h3 class="section-title" data-i18n="rsvpTitle">RSVP</h3>
+          <p class="section-subtitle" data-i18n="rsvpSubtitle">Please kindly confirm your attendance by Nov 15, 2026</p>
+
+          <form id="rsvpForm" class="rsvp-card">
+            <div class="form-group">
+              <label class="form-label" for="rsvpName" data-i18n="fullNameLabel">Your Full Name</label>
+              <input type="text" id="rsvpName" class="form-input" placeholder="e.g. Farhan Khan" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rsvpPhone" data-i18n="phoneLabel">WhatsApp / Phone Number</label>
+              <input type="tel" id="rsvpPhone" class="form-input" placeholder="+44 7123 456789">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rsvpAttending" data-i18n="attendingLabel">Will you be attending?</label>
+              <select id="rsvpAttending" class="form-select">
+                <option value="yes" data-i18n="attendingYes">Joyfully Accept with Pleasure</option>
+                <option value="no" data-i18n="attendingNo">Regretfully Decline with Best Wishes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rsvpGuests" data-i18n="guestsLabel">Number of Guests</label>
+              <select id="rsvpGuests" class="form-select">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4+">4+ Family</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventsLabel">Events Attending</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" checked value="wedding"> Wedding</label>
+                <label class="checkbox-label"><input type="checkbox" checked value="reception"> Reception</label>
+                <label class="checkbox-label"><input type="checkbox" value="mehendi"> Mehendi</label>
+                <label class="checkbox-label"><input type="checkbox" value="haldi"> Haldi</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rsvpDiet" data-i18n="dietLabel">Dietary Preference</label>
+              <select id="rsvpDiet" class="form-select">
+                <option value="Halal / Non-Veg">Halal / Non-Vegetarian</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Jain">Jain Friendly</option>
+                <option value="Vegan">Vegan</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rsvpMessage" data-i18n="messageLabel">Your Warm Wishes / Message</label>
+              <textarea id="rsvpMessage" class="form-textarea" rows="3" placeholder="Write your blessings for the couple..."></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit-btn" data-i18n="confirmRsvp">
+              Confirm Attendance ✨
+            </button>
+
+            <button type="button" id="whatsappRsvpBtn" class="whatsapp-rsvp-btn" data-i18n="whatsappRsvp">
+              Send RSVP via WhatsApp 💬
+            </button>
+          </form>
+        </section>
+
+        <!-- GUESTBOOK WISHES WALL -->
+        <section class="guestbook-section">
+          <div class="section-badge">💬 Love &amp; Blessings</div>
+          <h3 class="section-title" data-i18n="guestbookTitle">Wishes &amp; Blessings</h3>
+          <p class="section-subtitle" data-i18n="guestbookSubtitle">Leave your love and congratulatory notes</p>
+
+          <button id="postWishBtn" class="action-btn filled" style="margin: 0 auto 14px;" data-i18n="postWishBtn">
+            Post Wish 💌
+          </button>
+
+          <div id="wishesWall" class="wishes-wall-container"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer style="text-align: center; padding: 24px 18px 40px; color: var(--text-muted); font-size: 12px;">
+          <p style="font-family: var(--font-script); font-size: 26px; color: var(--gold-bronze); margin-bottom: 4px;">
+            Deepanshu &amp; Deepanjali
+          </p>
+          <p>January 3, 2027 • Hotel Vinayak, Hazaribagh, Jharkhand, India</p>
+          <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">Made with love &amp; joy for our cherished guests 🤍</p>
+        </footer>
+
+      </div> <!-- End .invitation-body -->
+    </div> <!-- End .invitation-container -->
+  </main>
+
+  <!-- ========================================================
+       MODAL: DIGITAL GUEST PASS & CONFIRMATION
+       ======================================================== -->
+  <div id="rsvpModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="closeModalBtn" class="close-modal-btn" aria-label="Close dialog">&times;</button>
+      <div style="font-size: 40px; margin-bottom: 8px;">🎉</div>
+      <h3 style="font-family: var(--font-display); font-size: 20px; color: #1f3022;">RSVP Confirmed!</h3>
+      <p style="font-size: 13.5px; color: var(--text-muted); margin: 6px 0 16px;">
+        Thank you for your response! Here is your digital guest pass:
+      </p>
+
+      <!-- Digital Pass Card -->
+      <div style="background: #faf7f2; border: 2px dashed #d4af37; border-radius: 16px; padding: 18px; margin-bottom: 16px;">
+        <h4 id="passGuestName" style="font-family: var(--font-display); font-size: 18px; color: #1e2c20;">Guest</h4>
+        <p id="passGuestCount" style="font-size: 13px; color: #aa7c11; font-weight: 600;">1 Guest</p>
+        <p id="passStatus" style="font-size: 12px; color: #3b523f; margin-top: 4px;">✅ Confirmed</p>
+
+        <!-- Stylized QR Code SVG -->
+        <div style="margin: 14px auto 8px; width: 110px; height: 110px; background: #ffffff; padding: 6px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+          <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <!-- Position Detection Patterns -->
+            <rect x="5" y="5" width="30" height="30" fill="#243526" rx="3"/>
+            <rect x="10" y="10" width="20" height="20" fill="#ffffff" rx="2"/>
+            <rect x="15" y="15" width="10" height="10" fill="#243526"/>
+
+            <rect x="65" y="5" width="30" height="30" fill="#243526" rx="3"/>
+            <rect x="70" y="10" width="20" height="20" fill="#ffffff" rx="2"/>
+            <rect x="75" y="15" width="10" height="10" fill="#243526"/>
+
+            <rect x="5" y="65" width="30" height="30" fill="#243526" rx="3"/>
+            <rect x="10" y="70" width="20" height="20" fill="#ffffff" rx="2"/>
+            <rect x="15" y="75" width="10" height="10" fill="#243526"/>
+
+            <!-- QR code simulated data blocks -->
+            <rect x="42" y="10" width="6" height="6" fill="#aa7c11"/>
+            <rect x="52" y="15" width="6" height="6" fill="#243526"/>
+            <rect x="45" y="25" width="6" height="6" fill="#243526"/>
+            <rect x="12" y="45" width="6" height="6" fill="#aa7c11"/>
+            <rect x="25" y="48" width="6" height="6" fill="#243526"/>
+            <rect x="40" y="42" width="16" height="16" fill="#d4af37" rx="2"/>
+            <rect x="45" y="47" width="6" height="6" fill="#ffffff"/>
+            <rect x="65" y="45" width="6" height="6" fill="#243526"/>
+            <rect x="78" y="50" width="6" height="6" fill="#aa7c11"/>
+            <rect x="45" y="68" width="6" height="6" fill="#243526"/>
+            <rect x="55" y="75" width="6" height="6" fill="#aa7c11"/>
+            <rect x="68" y="72" width="6" height="6" fill="#243526"/>
+            <rect x="80" y="80" width="6" height="6" fill="#243526"/>
+          </svg>
+        </div>
+        <p style="font-size: 10px; color: #888; letter-spacing: 1px;">ENTRY CODE: W-DD-2027</p>
+      </div>
+
+      <button class="action-btn filled save-date-trigger" style="width: 100%;">
+        📅 Add to Calendar
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div id="toast" class="toast-msg"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

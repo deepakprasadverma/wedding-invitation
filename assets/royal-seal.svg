@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0c2"/>
+      <stop offset="25%" stop-color="#d4af37"/>
+      <stop offset="50%" stop-color="#aa7c11"/>
+      <stop offset="75%" stop-color="#f3e5ab"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <radialGradient id="sealBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffcf5"/>
+      <stop offset="70%" stop-color="#faeed6"/>
+      <stop offset="100%" stop-color="#eddac0"/>
+    </radialGradient>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0e1d13" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#badgeShadow)">
+    <!-- Ornate Scalloped Medallion Base -->
+    <path d="M 150,30 
+             C 175,30 185,45 205,42 C 225,39 238,54 252,65 C 266,76 265,95 272,110 C 279,125 285,140 280,160 
+             C 275,180 262,195 255,212 C 248,229 235,245 215,252 C 195,259 180,250 160,265 C 140,280 120,270 100,262 
+             C 80,254 65,250 50,235 C 35,220 38,200 30,180 C 22,160 25,140 30,122 C 35,104 42,90 55,75 
+             C 68,60 85,55 105,46 C 125,37 135,30 150,30 Z" 
+          fill="url(#sealBg)" stroke="url(#goldGradient)" stroke-width="4"/>
+
+    <!-- Inner Filigree Beaded Border -->
+    <path d="M 150,42 
+             C 170,42 180,55 198,52 C 216,49 227,62 238,72 C 249,82 249,98 255,110 C 261,122 266,135 262,152 
+             C 258,169 246,182 240,196 C 234,210 223,223 206,230 C 189,237 175,229 158,242 C 141,255 125,246 108,239 
+             C 91,232 78,228 65,215 C 52,202 55,185 48,168 C 41,151 44,134 48,119 C 52,104 58,92 70,79 
+             C 82,66 96,62 113,54 C 130,46 138,42 150,42 Z" 
+          fill="none" stroke="url(#goldGradient)" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+    <!-- Top Flourish / Crown Motif -->
+    <path d="M 150,75 C 142,65 130,68 125,78 C 135,80 145,82 150,92 C 155,82 165,80 175,78 C 170,68 158,65 150,75 Z" 
+          fill="url(#goldGradient)"/>
+    <circle cx="150" cy="62" r="3" fill="url(#goldGradient)"/>
+
+    <!-- Floral / Botanical sprig icon -->
+    <path d="M 150,95 L 150,118 M 150,105 Q 140,100 138,108 M 150,112 Q 160,107 162,115" 
+          stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    <!-- Text: TAP TO OPEN -->
+    <text x="150" y="148" 
+          font-family="'Cinzel', 'Playfair Display', serif" 
+          font-size="16" 
+          font-weight="700" 
+          letter-spacing="5" 
+          text-anchor="middle" 
+          fill="#3b4d3c">
+      TAP TO OPEN
+    </text>
+
+    <!-- Couple Monogram / Subtitle -->
+    <text x="150" y="172" 
+          font-family="'Great Vibes', cursive, 'Cinzel', serif" 
+          font-size="15" 
+          text-anchor="middle" 
+          fill="#aa7c11">
+      Deepanshu &amp; Deepanjali
+    </text>
+
+    <!-- Bottom Flourish Motif -->
+    <path d="M 150,215 C 142,225 130,222 125,212 C 135,210 145,208 150,198 C 155,208 165,210 175,212 C 170,222 158,225 150,215 Z" 
+          fill="url(#goldGradient)"/>
+    <circle cx="150" cy="228" r="3" fill="url(#goldGradient)"/>
+  </g>
+</svg>

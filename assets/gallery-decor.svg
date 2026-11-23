@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hallBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241e1b"/>
+      <stop offset="50%" stop-color="#3d332e"/>
+      <stop offset="100%" stop-color="#1f1814"/>
+    </linearGradient>
+    <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffeed1" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#fdb851" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fdb851" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#hallBg)"/>
+  
+  <!-- Warm Fairy Lights in Bokeh -->
+  <circle cx="100" cy="80" r="18" fill="url(#candleGlow)"/>
+  <circle cx="220" cy="50" r="25" fill="url(#candleGlow)"/>
+  <circle cx="380" cy="70" r="20" fill="url(#candleGlow)"/>
+  <circle cx="500" cy="45" r="28" fill="url(#candleGlow)"/>
+  <circle cx="150" cy="120" r="12" fill="url(#candleGlow)"/>
+  <circle cx="450" cy="110" r="15" fill="url(#candleGlow)"/>
+
+  <!-- Banquet Table -->
+  <ellipse cx="300" cy="340" rx="260" ry="80" fill="#faf6f0"/>
+  <ellipse cx="300" cy="335" rx="250" ry="75" fill="#f2ede4"/>
+
+  <!-- Centerpiece Floral Arrangement -->
+  <g transform="translate(300, 260)">
+    <!-- Tall Gold Candelabra Stand -->
+    <rect x="-4" y="-120" width="8" height="120" fill="#d4af37"/>
+    <ellipse cx="0" cy="0" rx="30" ry="10" fill="#b8860b"/>
+    <ellipse cx="0" cy="-120" rx="25" ry="8" fill="#d4af37"/>
+
+    <!-- Floral Clouds (White Roses, Eucalyptus, Hydrangeas) -->
+    <ellipse cx="0" cy="-130" rx="90" ry="50" fill="#586e56"/>
+    <circle cx="-50" cy="-140" r="30" fill="#fdfbf7"/>
+    <circle cx="50" cy="-140" r="30" fill="#fdfbf7"/>
+    <circle cx="0" cy="-155" r="35" fill="#fffaf2"/>
+    <circle cx="-25" cy="-120" r="28" fill="#f7e1d7"/>
+    <circle cx="25" cy="-120" r="28" fill="#fcedd9"/>
+    <!-- Hanging Wisteria / Ivy -->
+    <path d="M -60,-110 Q -70,-60 -55,-20" stroke="#7e9678" stroke-width="4" fill="none"/>
+    <path d="M 60,-110 Q 70,-60 55,-20" stroke="#7e9678" stroke-width="4" fill="none"/>
+    <path d="M -20,-110 Q -30,-50 -15,-10" stroke="#6b8565" stroke-width="3" fill="none"/>
+    <path d="M 20,-110 Q 30,-50 15,-10" stroke="#6b8565" stroke-width="3" fill="none"/>
+
+    <!-- Taper Candles on Arms -->
+    <rect x="-80" y="-190" width="6" height="40" fill="#fcfbf9"/>
+    <ellipse cx="-77" cy="-195" rx="4" ry="8" fill="#ffb703"/>
+    <circle cx="-77" cy="-195" r="14" fill="url(#candleGlow)"/>
+
+    <rect x="74" y="-190" width="6" height="40" fill="#fcfbf9"/>
+    <ellipse cx="77" cy="-195" rx="4" ry="8" fill="#ffb703"/>
+    <circle cx="77" cy="-195" r="14" fill="url(#candleGlow)"/>
+
+    <rect x="-3" y="-210" width="6" height="40" fill="#fcfbf9"/>
+    <ellipse cx="0" cy="-215" rx="4" ry="8" fill="#ffb703"/>
+    <circle cx="0" cy="-215" r="16" fill="url(#candleGlow)"/>
+  </g>
+
+  <!-- Place Settings with Gold Rim Plates -->
+  <g transform="translate(180, 330)">
+    <ellipse cx="0" cy="0" rx="35" ry="16" fill="#d4af37"/>
+    <ellipse cx="0" cy="-1" rx="32" ry="14" fill="#ffffff"/>
+    <ellipse cx="0" cy="-1" rx="22" ry="9" fill="#fcf6ea" stroke="#d4af37" stroke-width="1"/>
+  </g>
+  <g transform="translate(420, 330)">
+    <ellipse cx="0" cy="0" rx="35" ry="16" fill="#d4af37"/>
+    <ellipse cx="0" cy="-1" rx="32" ry="14" fill="#ffffff"/>
+    <ellipse cx="0" cy="-1" rx="22" ry="9" fill="#d4af37" stroke="#d4af37" stroke-width="1"/>
+  </g>
+</svg>
