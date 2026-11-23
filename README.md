@@ -79,7 +79,9 @@ A handcrafted, luxury interactive digital wedding invitation website matching th
 
 ---
 
-## 🌐 Live Website
+## 🌐 Live Deployments
 
-- **Live URL**: https://deepakprasadverma.github.io/wedding-invitation/
+- **Vercel Production Live**: https://wedding-invitation-two-umber.vercel.app
+- **GitHub Pages Live**: https://deepakprasadverma.github.io/wedding-invitation/
 - **GitHub Repository**: https://github.com/deepakprasadverma/wedding-invitation
+
