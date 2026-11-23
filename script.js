@@ -1180,7 +1180,7 @@ function copyToClipboard(text, successMsg) {
 }
 
 // --- Initialization ---
-document.addEventListener('DOMContentLoaded', () => {
+function startApp() {
   initFxCanvas();
   initGateOpening();
   initCountdown();
@@ -1220,11 +1220,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Copy address
   document.getElementById('copyAddressBtn')?.addEventListener('click', () => {
-    copyToClipboard('Grand Palace Hall, 124 High Street, City Centre, London, UK', '📍 Venue address copied!');
+    copyToClipboard('Hotel Vinayak, Main Road, Hazaribagh, Jharkhand, India', '📍 Venue address copied!');
   });
 
   // Copy promo code
   document.getElementById('copyPromoBtn')?.addEventListener('click', () => {
-    copyToClipboard('WEDDING2026', '🏷️ Promo code WEDDING2026 copied!');
+    copyToClipboard('VINAYAK2027', '🏷️ Promo code VINAYAK2027 copied!');
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startApp);
+} else {
+  startApp();
+}
