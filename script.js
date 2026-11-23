@@ -1,6 +1,6 @@
 /* ========================================================
-   Zayn & Nora - Luxury Wedding Invitation Engine
-   Complete Interactive Features & Web Audio Synthesis
+   Deepanshu & Deepanjali - Luxury Wedding Invitation Engine
+   Complete Interactive Features, Audio Synthesis & i18n
    ======================================================== */
 
 // --- Global State ---
@@ -12,6 +12,7 @@ const state = {
   isOpened: false,
   carouselIndex: 0,
   targetDate: new Date('2027-01-03T19:00:00+05:30').getTime(),
+  guestName: '',
   wishes: [
     { id: 1, name: 'Amit & Priya Verma', text: 'Wishing Deepanshu & Deepanjali a lifetime of togetherness, boundless joy, and blessings! Heartiest congratulations! 🌸', date: 'Yesterday', likes: 16 },
     { id: 2, name: 'Uncle Rajesh & Family', text: 'So happy and proud! May your sacred union at Hotel Vinayak be filled with divine love and prosperity. 🤍', date: '2 days ago', likes: 24 },
@@ -19,25 +20,24 @@ const state = {
   ]
 };
 
-// --- Multilingual Translations ---
+// --- Multilingual Translations (English & Hindi) ---
 const translations = {
   en: {
     tapToOpen: 'TAP TO OPEN',
     coupleSubtitle: "Weds • Shubh Vivah",
     groomName: 'Deepanshu Pratap',
-    groomParents: 'Son of Smt. & Shri Pratap',
+    groomParents: 'Son of Smt. Shanti Devi & Shri Rajeshwar Pratap',
     groomQual: 'The Groom',
     brideName: 'Deepanjali Kumari',
-    brideParents: 'Daughter of Smt. & Shri Kumari',
+    brideParents: 'Daughter of Smt. Sunita Devi & Shri Rameshwar Verma',
     brideQual: 'The Bride',
-    welcomeNote: 'With the divine blessings of Lord Ganesha and our revered elders, we cordially invite you to celebrate the joyous wedding ceremony of Deepanshu Pratap & Deepanjali Kumari as they unite in holy matrimony.',
     welcomeThanks: 'अतिथि देवो भव: | Your gracious presence and heartfelt blessings will make this auspicious occasion truly unforgettable 🤍',
     scratchTitle: 'Scratch to Reveal Date',
     scratchSubtitle: 'Gently scratch the golden heart below to unveil the wedding date',
     revealedTag: 'Our forever begins',
     revealedHeading: "YOU'RE INVITED!",
     revealedDate: 'January 3, 2027',
-    revealedDayTime: 'Sunday • Auspicious Muhurat 07:00 PM',
+    revealedDayTime: 'Sunday • Shubh Vivah Muhurat 07:00 PM',
     saveTheDateBtn: '📅 Save The Date',
     scratchedHint: 'Rub to scratch with finger or mouse',
     countdownTitle: 'Counting Down to Shubh Vivah',
@@ -46,46 +46,56 @@ const translations = {
     minutes: 'MINUTES',
     seconds: 'SECONDS',
     timelineTitle: 'Wedding Program Timeline',
-    timelineSubtitle: 'Ceremony Schedule & Order of Events',
+    timelineSubtitle: 'Ceremony Schedule & Order of Events (Jan 3–4, 2027)',
     t1Time: '06:00 PM',
-    t1Event: 'Baarat & Swagat',
-    t1Desc: 'Grand welcome of Baarat with dhol & shehnai 🤍',
-    t2Time: '08:00 PM',
-    t2Event: 'Shubh Varmala (Jaimala)',
-    t2Desc: 'Sacred garland exchange between bride & groom',
-    t3Time: '08:30 PM',
-    t3Event: 'Royal Indian Wedding Feast',
-    t3Desc: 'Celebratory banquet & traditional Indian dinner',
-    t4Time: '10:30 PM',
-    t4Event: 'Pheras & Kanyadaan (Vidai)',
-    t4Desc: 'Seven sacred vows around the agni kunda & blessings',
+    t1Event: 'Baarat Agaman & Swagat',
+    t1Desc: "Grand arrival of the groom's procession with traditional dhol, shehnai & milni 🤍",
+    t2Time: '07:00 PM',
+    t2Event: 'Shubh Vivah Muhurat & Mandap Pujan',
+    t2Desc: 'Auspicious wedding muhurat begins with sacred Mandap Pravesh and Vedic chanting',
+    t3Time: '08:00 PM',
+    t3Event: 'Shubh Varmala (Jaimala)',
+    t3Desc: 'Sacred floral garland exchange between Bride & Groom on the royal stage',
+    t4Time: '08:30 PM',
+    t4Event: 'Grand Royal Banquet & Dinner',
+    t4Desc: 'Celebratory traditional feast & royal dinner reception for all guests',
+    t5Time: '10:30 PM',
+    t5Event: 'Kanyadaan Ceremony',
+    t5Desc: 'Sacred and emotional Kanyadaan ritual performed by parents and blessed by elders',
+    t6Time: '11:15 PM',
+    t6Event: 'Saptapadi & Pheras (Agni Sakshi)',
+    t6Desc: 'Seven sacred vows and holy circumambulations around the holy sacred fire',
+    t7Time: '05:00 AM (Jan 4)',
+    t7Event: 'Subah Mangal Vidai',
+    t7Desc: 'Heartfelt morning farewell of the newly wedded couple with blessings and best wishes 🤍',
     preweddingTitle: 'Pre-Wedding Celebrations',
-    preweddingSubtitle: 'Join us for the joy, music and colors',
-    mehendiTitle: 'Mehendi & Sangeet Night',
-    mehendiDesc: 'Jan 2, 2027 • 6:30 PM • Hotel Vinayak, Hazaribagh',
-    haldiTitle: 'Haldi Ceremony',
-    haldiDesc: 'Jan 2, 2027 • 11:00 AM • Family Residence',
+    preweddingSubtitle: 'Join us for the joy, music and sacred traditions',
     sangeetTitle: 'Tilak & Ring Ceremony',
-    sangeetDesc: 'Jan 1, 2027 • 5:00 PM • Hotel Vinayak Banquet',
+    sangeetDesc: 'Jan 1, 2027 • 5:00 PM • Hotel Vinayak Banquet Hall',
+    haldiTitle: 'Haldi Ceremony',
+    haldiDesc: 'Jan 2, 2027 • 11:00 AM • Pratap Niwas, Near Jhanda Chowk, Boddom Bazar, Hazaribagh',
+    mehendiTitle: 'Mehendi & Sangeet Night',
+    mehendiDesc: 'Jan 2, 2027 • 6:30 PM • Hotel Vinayak Lawn & Banquet, Hazaribagh',
+    weddingEventTitle: 'Shubh Vivah & Feast',
+    weddingEventDesc: 'Jan 3, 2027 • 6:00 PM onwards • Hotel Vinayak, Hazaribagh',
     venueTitle: 'Venue & Directions',
-    venueSubtitle: 'Hotel Vinayak, Hazaribagh, Jharkhand',
+    venueSubtitle: 'Hotel Vinayak, Main Road, Hazaribagh, Jharkhand',
     venueName: 'Hotel Vinayak',
-    venueAddress: 'Hotel Vinayak, Main Road, Hazaribagh, Jharkhand, India',
+    venueAddress: 'Hotel Vinayak, Main Road, Hazaribagh, Jharkhand 825301, India',
     openMaps: 'Open in Google Maps',
-    copyAddress: 'Copy Address',
+    copyAddress: '📋 Copy Address',
     dressCodeTitle: 'Dress Code & Palette',
     womenTitle: 'Women',
     womenDesc: 'Elegant traditional Indian attire (Lehenga / Saree / Anarkali in Pastel & Royal tones)',
     menTitle: 'Men',
     menDesc: 'Traditional Indian formal wear (Sherwani / Kurta Pajama / Bandhgala / Suit)',
-    transportTitle: 'Transportation & Travel',
-    transportDesc: 'Hazaribagh Town Railway Station & Bus Stand are 10 minutes from Hotel Vinayak.',
-    hotelTitle: 'Accommodation',
-    hotelDesc: 'Guest rooms reserved at Hotel Vinayak, Hazaribagh. Guest booking code:',
+    transportTitle: 'Travel & Route Guidance',
+    hotelTitle: 'Accommodation & Stay',
+    hotelDesc: 'Comfortable guest rooms are reserved at Hotel Vinayak, Hazaribagh. Please mention booking code:',
     giftsTitle: 'Gifts & Blessings',
     giftsDesc: 'Your love, prayers and presence are the greatest gifts we could ever ask for. 🤍',
     rsvpTitle: 'RSVP',
-    rsvpSubtitle: 'Please kindly confirm your attendance by Dec 15, 2026',
+    rsvpSubtitle: 'Please kindly confirm your attendance by December 25, 2026',
     fullNameLabel: 'Your Full Name',
     phoneLabel: 'WhatsApp / Phone Number',
     attendingLabel: 'Will you be attending?',
@@ -94,110 +104,32 @@ const translations = {
     guestsLabel: 'Number of Guests',
     eventsLabel: 'Events Attending',
     dietLabel: 'Dietary Preference',
+    dietVeg: 'Pure Vegetarian (शुद्ध शाकाहारी)',
+    dietNonVeg: 'Non-Vegetarian (मांसाहारी)',
+    dietJain: 'Jain Friendly (जैन भोजन - बिना प्याज/लहसुन)',
     messageLabel: 'Your Warm Wishes / Message',
-    confirmRsvp: 'Confirm Attendance ✨',
+    confirmRsvp: 'Confirm Attendance & Get Pass ✨',
     whatsappRsvp: 'Send RSVP via WhatsApp 💬',
     guestbookTitle: 'Wishes & Blessings',
     guestbookSubtitle: 'Leave your love and congratulatory notes',
     postWishBtn: 'Post Wish 💌'
   },
-  ar: {
-    tapToOpen: 'اضغط للفتح',
-    coupleSubtitle: 'يسعدنا أن نعلن عن زفافنا المبارك',
-    groomName: 'ديبانشو براتاب',
-    groomParents: 'نجل السيد والسيدة براتاب',
-    groomQual: 'العريس',
-    brideName: 'ديبانجالي كوماري',
-    brideParents: 'كريمة السيد والسيدة كوماري',
-    brideQual: 'العروس',
-    welcomeNote: 'ببركات الله، يشرفنا أن نرحب بكم في حفل زفاف ديبانشو براتاب وديبانجالي كوماري.',
-    welcomeThanks: 'نشكركم لمشاركتنا هذه المناسبة المباركة في فندق فيناياك، هازاريباغ 🤍',
-    scratchTitle: 'امسح لمعرفة الموعد',
-    scratchSubtitle: 'امسح القلب الذهبي للكشف عن موعد الحفل',
-    revealedTag: 'بداية رحلتنا الأبدية',
-    revealedHeading: 'أنتم مدعوون بكل حب!',
-    revealedDate: '٣ يناير ٢٠٢٧',
-    revealedDayTime: 'الأحد • الساعة ٠٧:٠٠ مساءً',
-    saveTheDateBtn: '📅 حفظ الموعد في التقويم',
-    scratchedHint: 'امسح بإصبعك أو بالفأرة',
-    countdownTitle: 'العد التنازلي ليومنا المميز',
-    days: 'يوم',
-    hours: 'ساعة',
-    minutes: 'دقيقة',
-    seconds: 'ثانية',
-    timelineTitle: 'برنامج الحفل',
-    timelineSubtitle: 'جدول مراسم يوم الزفاف',
-    t1Time: '٠٦:٠٠ مساءً',
-    t1Event: 'استقبال موكب العريس (بارات)',
-    t1Desc: 'استقبال حار مع الموسيقى والترحيب 🤍',
-    t2Time: '٠٨:٠٠ مساءً',
-    t2Event: 'مراسم تبادل الأكاليل (فارمالا)',
-    t2Desc: 'العهد وتبادل باقات الزهور بين العروسين',
-    t3Time: '٠٨:٣٠ مساءً',
-    t3Event: 'مأدبة العشاء الملكية',
-    t3Desc: 'وليمة هندية فاخرة وبركات الأهل والأصدقاء',
-    t4Time: '١٠:٣٠ مساءً',
-    t4Event: 'المراسم الروحية والعهود (فيرا)',
-    t4Desc: 'المراسم التقليدية حول النار المقدسة والبركات',
-    preweddingTitle: 'الاحتفالات السابقة للزفاف',
-    preweddingSubtitle: 'شاركونا الفرح والموسيقى',
-    mehendiTitle: 'ليلة الحناء والموسيقى (سانجيت)',
-    mehendiDesc: '٢ يناير ٢٠٢٧ • ٦:٣٠ مساءً • فندق فيناياك، هازاريباغ',
-    haldiTitle: 'مراسم الهالدي',
-    haldiDesc: '٢ يناير ٢٠٢٧ • ١١:٠٠ صباحاً • منزل العائلة',
-    sangeetTitle: 'مراسم الخطوبة والتيلك',
-    sangeetDesc: '١ يناير ٢٠٢٧ • ٥:٠٠ مساءً • فندق فيناياك',
-    venueTitle: 'المكان والعنوان',
-    venueSubtitle: 'فندق فيناياك، هازاريباغ، جهارخاند، الهند',
-    venueName: 'فندق فيناياك',
-    venueAddress: 'فندق فيناياك، الطريق الرئيسي، هازاريباغ، جهارخاند، الهند',
-    openMaps: 'فتح في خرائط جوجل',
-    copyAddress: 'نسخ العنوان',
-    dressCodeTitle: 'قواعد اللباس والألوان',
-    womenTitle: 'السيدات',
-    womenDesc: 'أزياء هندية تقليدية أنيقة وفخمة بدرجات الباستيل والألوان الملكية',
-    menTitle: 'الرجال',
-    menDesc: 'أزياء هندية تقليدية (شيرواني / كورتا) أو بدلة رسمية راقية',
-    transportTitle: 'المواصلات والسفر',
-    transportDesc: 'محطة قطار هازاريباغ على بعد ١٠ دقائق من فندق فيناياك.',
-    hotelTitle: 'الإقامة الفندقية',
-    hotelDesc: 'غرف خاصة محجوزة في فندق فيناياك، هازاريباغ. كود الخصم:',
-    giftsTitle: 'الهدايا والتهاني',
-    giftsDesc: 'محبتكم ودعواتكم وحضوركم هي أغلى وأجمل هدية نتمناها 🤍',
-    rsvpTitle: 'تأكيد الحضور (RSVP)',
-    rsvpSubtitle: 'يرجى تأكيد الحضور قبل ١٥ ديسمبر ٢٠٢٦',
-    fullNameLabel: 'الاسم الكامل',
-    phoneLabel: 'رقم الواتساب أو الهاتف',
-    attendingLabel: 'هل ستشرفوننا بالحضور؟',
-    attendingYes: 'نقبل بكل سرور وسعادة',
-    attendingNo: 'نعتذر مع أطيب التمنيات',
-    guestsLabel: 'عدد الضيوف',
-    eventsLabel: 'المناسبات المراد حضورها',
-    dietLabel: 'التفضيلات الغذائية',
-    messageLabel: 'رسالتكم وأطيب أمنياتكم للعروسين',
-    confirmRsvp: 'تأكيد الحضور ✨',
-    whatsappRsvp: 'إرسال التأكيد عبر واتساب 💬',
-    guestbookTitle: 'سجل التهاني والتبريكات',
-    guestbookSubtitle: 'شاركنا كلماتك الجميلة ودعواتك للعروسين',
-    postWishBtn: 'إرسال التهنئة 💌'
-  },
   hi: {
     tapToOpen: 'खोलने के लिए स्पर्श करें',
     coupleSubtitle: 'शुभ विवाह • सप्रेम निमंत्रण',
     groomName: 'दीपांशु प्रताप',
-    groomParents: 'सुपुत्र: श्रीमती एवं श्री प्रताप',
+    groomParents: 'सुपुत्र: श्रीमती शांति देवी एवं श्री राजेश्वर प्रताप',
     groomQual: 'वर',
     brideName: 'दीपांजलि कुमारी',
-    brideParents: 'सुपुत्री: श्रीमती एवं श्री कुमारी',
+    brideParents: 'सुपुत्री: श्रीमती सुनीता देवी एवं श्री रामेश्वर वर्मा',
     brideQual: 'वधू',
-    welcomeNote: '॥ ॐ श्री गणेशाय नमः ॥\nपरमपिता परमात्मा एवं कुलदेवता के असीम आशीर्वाद से, हम आपको दीपांशु प्रताप संग दीपांजलि कुमारी के पावन परिणय संस्कार के इस मांगलिक अवसर पर सपरिवार सादर आमंत्रित करते हैं।',
     welcomeThanks: 'अतिथि देवो भव: | आपकी गरिमामयी उपस्थिति एवं शुभाशीर्वाद हमारे इस पावन उत्सव को और अधिक मांगलिक बनाएगा 🤍',
     scratchTitle: 'शुभ तिथि जानने के लिए स्क्रैच करें',
     scratchSubtitle: 'नीचे दिए गए स्वर्णिम हृदय को हल्के से स्क्रैच करें',
     revealedTag: 'सदा के लिए एक पवित्र बंधन',
     revealedHeading: 'आप सादर आमंत्रित हैं!',
     revealedDate: '3 जनवरी 2027',
-    revealedDayTime: 'रविवार • शुभ मुहूर्त सायं 07:00 बजे',
+    revealedDayTime: 'रविवार • शुभ विवाह मुहूर्त सायं 07:00 बजे',
     saveTheDateBtn: '📅 कैलेंडर में जोड़ें',
     scratchedHint: 'उंगली या माउस से स्क्रैच करें',
     countdownTitle: 'शुभ घड़ी का इंतज़ार',
@@ -206,46 +138,56 @@ const translations = {
     minutes: 'मिनट',
     seconds: 'सेकंड',
     timelineTitle: 'विवाह कार्यक्रम विवरण',
-    timelineSubtitle: 'विवाह समारोह की शुभ समय सारिणी',
+    timelineSubtitle: 'विवाह समारोह की शुभ समय सारिणी (3–4 जनवरी 2027)',
     t1Time: 'सायं 06:00 बजे',
-    t1Event: 'बारात स्वागत एवं जलपान',
-    t1Desc: 'ढोल-नगाड़ों और शहनाई के साथ बारात का भव्य स्वागत 🤍',
-    t2Time: 'सायं 08:00 बजे',
-    t2Event: 'शुभ वरमाला (जयमाला)',
-    t2Desc: 'वर-वधू का पावन जयमाला संस्कार एवं पुष्प वर्षा',
-    t3Time: 'रात्रि 08:30 बजे',
-    t3Event: 'शाही प्रीतिभोज (डिनर)',
-    t3Desc: 'पारंपरिक स्वादिष्ट व्यंजनों का शाही भोज एवं आशीर्वाद',
-    t4Time: 'रात्रि 10:30 बजे',
-    t4Event: 'सप्तपदी फेरे एवं कन्यादान',
-    t4Desc: 'पवित्र अग्नि के समक्ष सात फेरे, वचन एवं विदाई',
+    t1Event: 'बारात आगमन एवं भव्य स्वागत',
+    t1Desc: 'ढोल-नगाड़ों और शहनाई के साथ बारात का भव्य स्वागत एवं मिलनी संस्कार 🤍',
+    t2Time: 'सायं 07:00 बजे',
+    t2Event: 'शुभ विवाह मुहूर्त एवं मंडप पूजन',
+    t2Desc: 'शुभ लग्न मुहूर्त का प्रारंभ, मंडप प्रवेश एवं पावन वेदमंत्रों के साथ पूजन',
+    t3Time: 'सायं 08:00 बजे',
+    t3Event: 'शुभ वरमाला (जयमाला)',
+    t3Desc: 'वर-वधू का पावन वरमाला आदान-प्रदान एवं पुष्प वर्षा',
+    t4Time: 'रात्रि 08:30 बजे',
+    t4Event: 'शाही प्रीतिभोज (डिनर)',
+    t4Desc: 'समस्त प्रिय अतिथियों के लिए स्वादिष्ट पारंपरिक शाही प्रीतिभोज',
+    t5Time: 'रात्रि 10:30 बजे',
+    t5Event: 'कन्यादान संस्कार',
+    t5Desc: 'माता-पिता एवं पूज्य गुरुजनों के सानिध्य में पावन कन्यादान संस्कार',
+    t6Time: 'रात्रि 11:15 बजे',
+    t6Event: 'सप्तपदी एवं फेरे (अग्नि साक्षी)',
+    t6Desc: 'पवित्र अग्नि साक्षी में सात वचन एवं सात फेरे (सप्तपदी संस्कार)',
+    t7Time: 'प्रातः 05:00 बजे (4 जन)',
+    t7Event: 'शुभ मंगल विदाई',
+    t7Desc: 'प्रातःकाल सजल नेत्रों एवं शुभाशीर्वाद के साथ नवदंपति की विदाई 🤍',
     preweddingTitle: 'विवाह पूर्व शुभ उत्सव',
     preweddingSubtitle: 'आनंद, संगीत और रंगों के उत्सव में शामिल हों',
-    mehendiTitle: 'मेहंदी एवं संगीत उत्सव',
-    mehendiDesc: '2 जनवरी 2027 • सायं 6:30 बजे • होटल विनायक, हज़ारीबाग़',
-    haldiTitle: 'हल्दी रस्म',
-    haldiDesc: '2 जनवरी 2027 • प्रातः 11:00 बजे • निवास स्थान',
     sangeetTitle: 'तिलक एवं अंगूठी रस्म',
-    sangeetDesc: '1 जनवरी 2027 • सायं 5:00 बजे • होटल विनायक',
+    sangeetDesc: '1 जनवरी 2027 • सायं 5:00 बजे • होटल विनायक बैंक्वेट',
+    haldiTitle: 'हल्दी रस्म',
+    haldiDesc: '2 जनवरी 2027 • प्रातः 11:00 बजे • प्रताप निवास, झंडा चौक के पास, बोडडम बाज़ार, हज़ारीबाग़',
+    mehendiTitle: 'मेहंदी एवं संगीत उत्सव',
+    mehendiDesc: '2 जनवरी 2027 • सायं 6:30 बजे • होटल विनायक लॉन, हज़ारीबाग़',
+    weddingEventTitle: 'शुभ विवाह एवं प्रीतिभोज',
+    weddingEventDesc: '3 जनवरी 2027 • सायं 6:00 बजे से • होटल विनायक, हज़ारीबाग़',
     venueTitle: 'समारोह स्थल एवं मार्ग',
-    venueSubtitle: 'होटल विनायक, हज़ारीबाग़, झारखण्ड',
+    venueSubtitle: 'होटल विनायक, मेन रोड, हज़ारीबाग़, झारखण्ड',
     venueName: 'होटल विनायक',
-    venueAddress: 'होटल विनायक, मेन रोड, हज़ारीबाग़, झारखण्ड, भारत',
+    venueAddress: 'होटल विनायक, मेन रोड, हज़ारीबाग़, झारखण्ड 825301, भारत',
     openMaps: 'गूगल मैप्स में देखें',
-    copyAddress: 'पता कॉपी करें',
+    copyAddress: '📋 पता कॉपी करें',
     dressCodeTitle: 'ड्रेस कोड एवं रंग थीम',
     womenTitle: 'महिलाएं',
     womenDesc: 'पेस्टल एवं पारंपरिक परिधान (लहंगा, साड़ी, अनारकली)',
     menTitle: 'पुरुष',
     menDesc: 'पारंपरिक परिधान (शेरवानी, कुर्ता पायजामा, सूट)',
-    transportTitle: 'परिवहन व्यवस्था',
-    transportDesc: 'हज़ारीबाग़ टाउन रेलवे स्टेशन एवं बस स्टैंड होटल विनायक से केवल 10 मिनट की दूरी पर हैं।',
+    transportTitle: 'परिवहन एवं मार्ग मार्गदर्शन',
     hotelTitle: 'आवास व्यवस्था',
     hotelDesc: 'होटल विनायक, हज़ारीबाग़ में आरामदायक अतिथि कक्ष आरक्षित हैं। प्रोमो कोड:',
     giftsTitle: 'उपहार एवं आशीर्वाद',
     giftsDesc: 'आपका स्नेह, शुभाशीष और उपस्थिति ही हमारे लिए सबसे अनमोल उपहार है 🤍',
     rsvpTitle: 'उपस्थिति पुष्टि (RSVP)',
-    rsvpSubtitle: 'कृपया 15 दिसंबर 2026 तक अपनी उपस्थिति अवश्य दर्ज करें',
+    rsvpSubtitle: 'कृपया 25 दिसंबर 2026 तक अपनी उपस्थिति अवश्य दर्ज करें',
     fullNameLabel: 'आपका पूरा नाम',
     phoneLabel: 'व्हाट्सएप / मोबाइल नंबर',
     attendingLabel: 'क्या आप उपस्थित होंगे?',
@@ -254,8 +196,11 @@ const translations = {
     guestsLabel: 'अतिथियों की संख्या',
     eventsLabel: 'किन कार्यक्रमों में पधारेंगे?',
     dietLabel: 'खानपान वरीयता',
+    dietVeg: 'शुद्ध शाकाहारी',
+    dietNonVeg: 'मांसाहारी',
+    dietJain: 'जैन भोजन (बिना प्याज/लहसुन)',
     messageLabel: 'वर-वधू के लिए शुभकामना संदेश',
-    confirmRsvp: 'उपस्थिति पुष्टि करें ✨',
+    confirmRsvp: 'उपस्थिति पुष्टि करें एवं पास पाएं ✨',
     whatsappRsvp: 'व्हाट्सएप पर RSVP भेजें 💬',
     guestbookTitle: 'शुभकामनाएं एवं आशीर्वाद',
     guestbookSubtitle: 'नवदंपति के लिए अपना प्यार और शुभकामनाएं साझा करें',
@@ -271,16 +216,18 @@ class WeddingAudioEngine {
     this.timer = null;
     this.noteIndex = 0;
     this.masterGain = null;
+    this.droneOsc = null;
+    this.droneGain = null;
   }
 
   init() {
     if (this.ctx) return;
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) {
-        this.ctx = new AudioContext();
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
         this.masterGain = this.ctx.createGain();
-        this.masterGain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+        this.masterGain.gain.setValueAtTime(0.28, this.ctx.currentTime);
         this.masterGain.connect(this.ctx.destination);
       }
     } catch (e) {
@@ -294,7 +241,7 @@ class WeddingAudioEngine {
       if (!this.ctx) return;
       if (this.ctx.state === 'suspended') this.ctx.resume().catch(() => {});
       const now = this.ctx.currentTime;
-      const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C major pentatonic bells
+      const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
       freqs.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
@@ -312,28 +259,31 @@ class WeddingAudioEngine {
   }
 
   playScratchSound() {
-    this.init();
-    if (this.ctx.state === 'suspended') this.ctx.resume();
-    const now = this.ctx.currentTime;
-    const bufferSize = this.ctx.sampleRate * 0.05; // 50ms noise
-    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = (Math.random() * 2 - 1) * 0.15;
-    }
-    const noise = this.ctx.createBufferSource();
-    noise.buffer = buffer;
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(1800 + Math.random() * 600, now);
-    filter.Q.value = 3;
-    const gain = this.ctx.createGain();
-    gain.gain.setValueAtTime(0.08, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.masterGain);
-    noise.start(now);
+    try {
+      this.init();
+      if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') this.ctx.resume().catch(() => {});
+      const now = this.ctx.currentTime;
+      const bufferSize = Math.floor(this.ctx.sampleRate * 0.04);
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.12;
+      }
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(1800 + Math.random() * 600, now);
+      filter.Q.value = 3;
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.masterGain);
+      noise.start(now);
+    } catch (e) {}
   }
 
   startMelody() {
@@ -344,52 +294,49 @@ class WeddingAudioEngine {
       this.isPlaying = true;
       updateAudioUI(true);
 
-      // Warm Tanpura / Drone in background
       this.startDrone();
 
-    // Soulful Indian Wedding Raga melody notes (Frequencies in Hz)
-    // Inspired by classic romantic wedding theme (Raag Yaman / Pahadi)
-    const melody = [
-      { f: 293.66, d: 0.6 }, // D4
-      { f: 329.63, d: 0.6 }, // E4
-      { f: 369.99, d: 0.8 }, // F#4
-      { f: 440.00, d: 1.0 }, // A4
-      { f: 493.88, d: 0.8 }, // B4
-      { f: 587.33, d: 1.4 }, // D5
-      { f: 554.37, d: 0.6 }, // C#5
-      { f: 493.88, d: 0.8 }, // B4
-      { f: 440.00, d: 1.2 }, // A4
-      { f: 369.99, d: 0.8 }, // F#4
-      { f: 329.63, d: 0.8 }, // E4
-      { f: 293.66, d: 1.6 }, // D4
+      const melody = [
+        { f: 293.66, d: 0.6 },
+        { f: 329.63, d: 0.6 },
+        { f: 369.99, d: 0.8 },
+        { f: 440.00, d: 1.0 },
+        { f: 493.88, d: 0.8 },
+        { f: 587.33, d: 1.4 },
+        { f: 554.37, d: 0.6 },
+        { f: 493.88, d: 0.8 },
+        { f: 440.00, d: 1.2 },
+        { f: 369.99, d: 0.8 },
+        { f: 329.63, d: 0.8 },
+        { f: 293.66, d: 1.6 },
+        { f: 440.00, d: 0.8 },
+        { f: 493.88, d: 0.8 },
+        { f: 587.33, d: 1.2 },
+        { f: 659.25, d: 1.4 },
+        { f: 587.33, d: 0.8 },
+        { f: 493.88, d: 0.8 },
+        { f: 440.00, d: 1.5 },
+        { f: 369.99, d: 0.8 },
+        { f: 329.63, d: 0.8 },
+        { f: 293.66, d: 2.0 }
+      ];
 
-      { f: 440.00, d: 0.8 }, // A4
-      { f: 493.88, d: 0.8 }, // B4
-      { f: 587.33, d: 1.2 }, // D5
-      { f: 659.25, d: 1.4 }, // E5
-      { f: 587.33, d: 0.8 }, // D5
-      { f: 493.88, d: 0.8 }, // B4
-      { f: 440.00, d: 1.5 }, // A4
-      { f: 369.99, d: 0.8 }, // F#4
-      { f: 329.63, d: 0.8 }, // E4
-      { f: 293.66, d: 2.0 }  // D4
-    ];
+      const playNextNote = () => {
+        if (!this.isPlaying) return;
+        const note = melody[this.noteIndex % melody.length];
+        this.playFluteNote(note.f, note.d);
+        this.noteIndex++;
+        this.timer = setTimeout(playNextNote, note.d * 950);
+      };
 
-    const playNextNote = () => {
-      if (!this.isPlaying) return;
-      const note = melody[this.noteIndex % melody.length];
-      this.playFluteNote(note.f, note.d);
-      this.noteIndex++;
-      this.timer = setTimeout(playNextNote, note.d * 950);
-    };
-
-    playNextNote();
-  } catch (e) {
-    console.warn('Audio playback error:', e);
+      playNextNote();
+    } catch (e) {
+      console.warn('Audio playback error:', e);
+    }
   }
-}
 
   playFluteNote(freq, duration) {
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
     const osc = this.ctx.createOscillator();
     const oscHarmonic = this.ctx.createOscillator();
@@ -402,10 +349,9 @@ class WeddingAudioEngine {
     oscHarmonic.type = 'triangle';
     oscHarmonic.frequency.setValueAtTime(freq * 2, now);
 
-    // Warm vibrato
     const vibrato = this.ctx.createOscillator();
     const vibGain = this.ctx.createGain();
-    vibrato.frequency.value = 5.2; // 5Hz vibrato
+    vibrato.frequency.value = 5.2;
     vibGain.gain.value = freq * 0.015;
     vibrato.connect(osc.frequency);
     vibrato.start(now);
@@ -415,7 +361,7 @@ class WeddingAudioEngine {
     filter.frequency.setValueAtTime(1400, now);
 
     gain.gain.setValueAtTime(0.001, now);
-    gain.gain.linearRampToValueAtTime(0.18, now + 0.15); // soft breath attack
+    gain.gain.linearRampToValueAtTime(0.18, now + 0.15);
     gain.gain.setValueAtTime(0.18, now + duration - 0.1);
     gain.gain.exponentialRampToValueAtTime(0.001, now + duration + 0.15);
 
@@ -431,12 +377,12 @@ class WeddingAudioEngine {
   }
 
   startDrone() {
-    if (this.droneOsc) return;
+    if (this.droneOsc || !this.ctx) return;
     const now = this.ctx.currentTime;
     this.droneOsc = this.ctx.createOscillator();
     this.droneGain = this.ctx.createGain();
     this.droneOsc.type = 'triangle';
-    this.droneOsc.frequency.setValueAtTime(146.83, now); // D3 fundamental drone
+    this.droneOsc.frequency.setValueAtTime(146.83, now);
     this.droneGain.gain.setValueAtTime(0.001, now);
     this.droneGain.gain.linearRampToValueAtTime(0.04, now + 2);
     this.droneOsc.connect(this.droneGain);
@@ -447,11 +393,11 @@ class WeddingAudioEngine {
   stopMelody() {
     this.isPlaying = false;
     clearTimeout(this.timer);
-    if (this.droneGain) {
+    if (this.droneGain && this.ctx) {
       this.droneGain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.5);
       setTimeout(() => {
         if (this.droneOsc) {
-          this.droneOsc.stop();
+          try { this.droneOsc.stop(); } catch(e){}
           this.droneOsc = null;
         }
       }, 600);
@@ -497,9 +443,7 @@ function initScratchCard() {
   canvas.width = width;
   canvas.height = height;
 
-  // Draw shimmering sage-green & gold coating
   function renderCoating() {
-    // Rich sage green gradient base
     const grad = ctx.createLinearGradient(0, 0, width, height);
     grad.addColorStop(0, '#2d4030');
     grad.addColorStop(0.5, '#3b523f');
@@ -507,19 +451,16 @@ function initScratchCard() {
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
-    // Golden border on canvas
     ctx.strokeStyle = '#d4af37';
     ctx.lineWidth = 4;
     ctx.strokeRect(10, 10, width - 20, height - 20);
 
-    // Inner dashed line
     ctx.strokeStyle = 'rgba(246, 230, 170, 0.4)';
     ctx.lineWidth = 1.5;
     ctx.setLineDash([5, 5]);
     ctx.strokeRect(16, 16, width - 32, height - 32);
     ctx.setLineDash([]);
 
-    // Draw shimmering glitter specks
     for (let i = 0; i < 400; i++) {
       const x = Math.random() * width;
       const y = Math.random() * height;
@@ -530,7 +471,6 @@ function initScratchCard() {
       ctx.fill();
     }
 
-    // Centered Heart Silhouette Icon on the scratch coating
     const cx = width / 2;
     const cy = height / 2 - 20;
     ctx.save();
@@ -543,16 +483,14 @@ function initScratchCard() {
     ctx.stroke();
     ctx.restore();
 
-    // Calligraphic instruction text on canvas
     ctx.fillStyle = '#ffffff';
     ctx.font = '700 16px "Cinzel", Georgia, serif';
     ctx.textAlign = 'center';
-    ctx.letterSpacing = '3px';
     ctx.fillText('SCRATCH TO REVEAL', cx, cy + 85);
 
     ctx.fillStyle = '#d4af37';
     ctx.font = 'italic 14px "Playfair Display", Georgia, serif';
-    ctx.fillText('Touch & rub to uncover', cx, cy + 110);
+    ctx.fillText('Touch & rub with finger or mouse', cx, cy + 110);
   }
 
   function drawHeartPath(context, x, y, size) {
@@ -567,7 +505,6 @@ function initScratchCard() {
 
   renderCoating();
 
-  // Scratch handling
   let isDown = false;
   let lastPos = null;
 
@@ -633,7 +570,7 @@ function initScratchCard() {
       const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const pixels = imgData.data;
       let transparent = 0;
-      const step = 32; // Sample every 32nd pixel for performance
+      const step = 32;
       for (let i = 3; i < pixels.length; i += step * 4) {
         if (pixels[i] < 128) transparent++;
       }
@@ -642,11 +579,10 @@ function initScratchCard() {
       state.scratchedPercent = Math.round(ratio * 100);
 
       const hint = document.getElementById('scratchPercentHint');
-      if (hint && ratio < 0.4) {
+      if (hint && ratio < 0.38) {
         hint.textContent = `Scratched: ${state.scratchedPercent}%`;
       }
 
-      // Auto reveal past 38%
       if (ratio > 0.38) {
         revealCardCompletely();
       }
@@ -734,7 +670,6 @@ function initCarousel() {
     dot.addEventListener('click', () => showSlide(idx));
   });
 
-  // Auto transition every 4 seconds
   let timer = setInterval(() => showSlide(state.carouselIndex + 1), 4000);
 
   const container = document.querySelector('.carousel-container');
@@ -745,7 +680,6 @@ function initCarousel() {
       timer = setInterval(() => showSlide(state.carouselIndex + 1), 4000);
     });
 
-    // Touch swipe support
     let startX = 0;
     container.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
@@ -811,7 +745,6 @@ function initFxCanvas() {
       ctx.globalAlpha = p.opacity;
 
       if (p.isPetal) {
-        // Soft blush rose petal
         ctx.fillStyle = '#f7dcdb';
         ctx.beginPath();
         ctx.ellipse(0, 0, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
@@ -820,7 +753,6 @@ function initFxCanvas() {
         ctx.lineWidth = 0.5;
         ctx.stroke();
       } else {
-        // Shimmering gold sparkle dust
         ctx.fillStyle = '#fce2aa';
         ctx.shadowColor = '#d4af37';
         ctx.shadowBlur = 4;
@@ -863,7 +795,7 @@ function triggerConfetti() {
     confetti.forEach((c) => {
       c.x += c.vx;
       c.y += c.vy;
-      c.vy += 0.35; // gravity
+      c.vy += 0.35;
       c.alpha -= 0.012;
       c.rotation += c.rotSpeed;
 
@@ -897,7 +829,6 @@ function initGateOpening() {
     if (state.isOpened) return;
     state.isOpened = true;
 
-    // Sound effect & music start
     try { weddingAudio.playChime(); } catch(e){}
     setTimeout(() => {
       try { weddingAudio.startMelody(); } catch(e){}
@@ -909,7 +840,6 @@ function initGateOpening() {
     if (c) c.classList.add('gate-opened');
     try { triggerConfetti(); } catch(e){}
 
-    // Init scratch card once container is unveiled
     setTimeout(() => {
       try { initScratchCard(); } catch(e){}
     }, 500);
@@ -935,11 +865,8 @@ function setLanguage(lang) {
   state.currentLang = lang;
   const dict = translations[lang];
 
-  // Set document direction for RTL (Arabic)
-  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.documentElement.setAttribute('lang', lang);
 
-  // Update text bindings
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) {
@@ -947,7 +874,6 @@ function setLanguage(lang) {
     }
   });
 
-  // Update placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key]) {
@@ -955,26 +881,97 @@ function setLanguage(lang) {
     }
   });
 
-  // Update active pill
   document.querySelectorAll('.lang-pill').forEach((pill) => {
     pill.classList.toggle('active', pill.getAttribute('data-lang') === lang);
   });
 
-  showToast(`Language switched to ${lang === 'en' ? 'English' : lang === 'ar' ? 'العربية' : 'हिन्दी'}`);
+  // Update personalized guest greeting if active
+  updatePersonalizedGreeting();
+
+  showToast(`Language switched to ${lang === 'en' ? 'English' : 'हिन्दी'}`);
 }
 
-// --- Calendar Save The Date (.ics download & Google Calendar) ---
-function saveTheDate() {
-  const title = "Deepanshu & Deepanjali's Wedding Ceremony";
-  const desc = "You are cordially invited to celebrate the wedding ceremony of Deepanshu Pratap & Deepanjali Kumari at Hotel Vinayak, Hazaribagh, Jharkhand, India.";
-  const location = "Hotel Vinayak, Main Road, Hazaribagh, Jharkhand, India";
-  const start = "20270103T133000Z";
-  const end = "20270103T183000Z";
+// --- Personalized Guest Greeting Handling (?guest= or ?to=) ---
+function initPersonalizedGreeting() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const rawGuest = urlParams.get('guest') || urlParams.get('to');
 
-  // Google Calendar URL
-  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(location)}`;
+  if (rawGuest) {
+    const cleaned = decodeURIComponent(rawGuest.replace(/\+/g, ' ')).trim();
+    if (cleaned) {
+      state.guestName = cleaned;
+      const badge = document.getElementById('personalizedGuestBadge');
+      if (badge) badge.style.display = 'block';
 
-  // Download .ics file
+      // Also pre-fill RSVP form name if empty
+      const rsvpNameInput = document.getElementById('rsvpName');
+      if (rsvpNameInput && !rsvpNameInput.value) {
+        rsvpNameInput.value = cleaned;
+      }
+
+      // Also set the share generator input
+      const shareInput = document.getElementById('guestNameInput');
+      if (shareInput) shareInput.value = cleaned;
+
+      updatePersonalizedGreeting();
+    }
+  }
+}
+
+function updatePersonalizedGreeting() {
+  if (!state.guestName) return;
+  const salutation = document.getElementById('guestSalutation');
+  const subtext = document.getElementById('guestSubtext');
+  if (!salutation || !subtext) return;
+
+  if (state.currentLang === 'hi') {
+    salutation.textContent = `आदरणीय ${state.guestName}`;
+    subtext.textContent = `आप एवं आपके परिवार का दीपांशु एवं दीपांजलि के विवाह समारोह में हार्दिक एवं सप्रेम स्वागत है 🌸`;
+  } else {
+    salutation.textContent = `Dear ${state.guestName}`;
+    subtext.textContent = `You and your esteemed family are cordially invited to celebrate the auspicious wedding ceremony of Deepanshu & Deepanjali 🤍`;
+  }
+}
+
+// --- Add to Calendar for Individual Functions (.ics & Google Calendar) ---
+const eventDataMap = {
+  tilak: {
+    title: "Deepanshu & Deepanjali's Tilak & Ring Ceremony",
+    desc: "Auspicious Tilak & Ring Ceremony of Deepanshu & Deepanjali at Hotel Vinayak Banquet Hall, Hazaribagh.",
+    loc: "Hotel Vinayak Banquet Hall, Main Road, Hazaribagh, Jharkhand 825301",
+    start: "20270101T113000Z", // Jan 1, 5:00 PM IST
+    end: "20270101T153000Z",   // Jan 1, 9:00 PM IST
+    filename: "Tilak_Ceremony_Deepanshu_Deepanjali.ics"
+  },
+  haldi: {
+    title: "Deepanshu & Deepanjali's Haldi Ceremony",
+    desc: "Traditional Haldi Ceremony of Deepanshu & Deepanjali at Pratap Niwas, Boddom Bazar, Hazaribagh.",
+    loc: "Pratap Niwas, Near Jhanda Chowk, Boddom Bazar, Hazaribagh, Jharkhand 825301",
+    start: "20270102T053000Z", // Jan 2, 11:00 AM IST
+    end: "20270102T083000Z",   // Jan 2, 2:00 PM IST
+    filename: "Haldi_Ceremony_Deepanshu_Deepanjali.ics"
+  },
+  mehendi: {
+    title: "Deepanshu & Deepanjali's Mehendi & Sangeet Night",
+    desc: "Joyous Mehendi & Musical Sangeet Night for Deepanshu & Deepanjali at Hotel Vinayak Lawn & Banquet, Hazaribagh.",
+    loc: "Hotel Vinayak Lawn & Banquet, Main Road, Hazaribagh, Jharkhand 825301",
+    start: "20270102T130000Z", // Jan 2, 6:30 PM IST
+    end: "20270102T173000Z",   // Jan 2, 11:00 PM IST
+    filename: "Mehendi_Sangeet_Deepanshu_Deepanjali.ics"
+  },
+  wedding: {
+    title: "Shubh Vivah: Deepanshu Pratap weds Deepanjali Kumari",
+    desc: "Sacred Wedding Ceremony & Grand Royal Banquet of Deepanshu Pratap & Deepanjali Kumari at Hotel Vinayak, Hazaribagh.",
+    loc: "Hotel Vinayak, Main Road, Hazaribagh, Jharkhand 825301",
+    start: "20270103T123000Z", // Jan 3, 6:00 PM IST
+    end: "20270103T233000Z",   // Jan 4, 5:00 AM IST
+    filename: "Shubh_Vivah_Deepanshu_Deepanjali.ics"
+  }
+};
+
+function saveEventDate(eventType) {
+  const ev = eventDataMap[eventType] || eventDataMap.wedding;
+
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -982,11 +979,11 @@ function saveTheDate() {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `SUMMARY:${title}`,
-    `DESCRIPTION:${desc}`,
-    `LOCATION:${location}`,
-    `DTSTART:${start}`,
-    `DTEND:${end}`,
+    `SUMMARY:${ev.title}`,
+    `DESCRIPTION:${ev.desc}`,
+    `LOCATION:${ev.loc}`,
+    `DTSTART:${ev.start}`,
+    `DTEND:${ev.end}`,
     'STATUS:CONFIRMED',
     'END:VEVENT',
     'END:VCALENDAR'
@@ -995,12 +992,28 @@ function saveTheDate() {
   const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
-  link.setAttribute('download', 'Deepanshu_and_Deepanjali_Wedding.ics');
+  link.setAttribute('download', ev.filename);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 
-  showToast('📅 Calendar invite downloaded (.ics)!');
+  showToast(`📅 Downloaded calendar invite: ${ev.title}`);
+}
+
+window.saveEventDate = saveEventDate;
+
+function saveTheDate() {
+  saveEventDate('wedding');
+}
+
+// --- Unique Digital Pass Generator ---
+function generateUniquePassCode() {
+  const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  let rand = '';
+  for (let i = 0; i < 6; i++) {
+    rand += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return `W-DD-${rand}`;
 }
 
 // --- RSVP Handling & WhatsApp Integration ---
@@ -1009,18 +1022,22 @@ function initRsvp() {
   const modal = document.getElementById('rsvpModal');
   const closeModal = document.getElementById('closeModalBtn');
   const waBtn = document.getElementById('whatsappRsvpBtn');
+  const copyPassBtn = document.getElementById('copyPassBtn');
 
   // Load cached RSVP
   const cached = localStorage.getItem('wedding_rsvp_deepanshu_deepanjali');
+  let currentPassCode = localStorage.getItem('wedding_guest_pass_code') || generateUniquePassCode();
+
   if (cached) {
     try {
       const data = JSON.parse(cached);
-      if (document.getElementById('rsvpName')) document.getElementById('rsvpName').value = data.name || '';
-      if (document.getElementById('rsvpPhone')) document.getElementById('rsvpPhone').value = data.phone || '';
-      if (document.getElementById('rsvpAttending')) document.getElementById('rsvpAttending').value = data.attending || 'yes';
-      if (document.getElementById('rsvpGuests')) document.getElementById('rsvpGuests').value = data.guests || '1';
-      if (document.getElementById('rsvpDiet')) document.getElementById('rsvpDiet').value = data.diet || 'veg';
-      if (document.getElementById('rsvpMessage')) document.getElementById('rsvpMessage').value = data.message || '';
+      if (document.getElementById('rsvpName') && data.name) document.getElementById('rsvpName').value = data.name;
+      if (document.getElementById('rsvpPhone') && data.phone) document.getElementById('rsvpPhone').value = data.phone;
+      if (document.getElementById('rsvpAttending') && data.attending) document.getElementById('rsvpAttending').value = data.attending;
+      if (document.getElementById('rsvpGuests') && data.guests) document.getElementById('rsvpGuests').value = data.guests;
+      if (document.getElementById('rsvpDiet') && data.diet) document.getElementById('rsvpDiet').value = data.diet;
+      if (document.getElementById('rsvpMessage') && data.message) document.getElementById('rsvpMessage').value = data.message;
+      if (data.passCode) currentPassCode = data.passCode;
     } catch (e) {}
   }
 
@@ -1034,18 +1051,49 @@ function initRsvp() {
       const diet = document.getElementById('rsvpDiet').value;
       const message = document.getElementById('rsvpMessage').value.trim();
 
+      // Gather checked events
+      const checkedBoxes = Array.from(document.querySelectorAll('input[name="rsvpEvent"]:checked')).map(cb => {
+        const labels = {
+          tilak: 'Tilak (Jan 1)',
+          haldi: 'Haldi (Jan 2)',
+          mehendi: 'Mehendi & Sangeet (Jan 2)',
+          wedding: 'Shubh Vivah (Jan 3)',
+          reception: 'Grand Feast (Jan 3)'
+        };
+        return labels[cb.value] || cb.value;
+      });
+      const eventsStr = checkedBoxes.length ? checkedBoxes.join(', ') : 'Shubh Vivah';
+
       if (!name) {
         showToast('Please enter your full name');
         return;
       }
 
-      const rsvpData = { name, phone, attending, guests, diet, message, timestamp: new Date().toISOString() };
+      // Generate or retrieve persistent pass code
+      if (!currentPassCode || currentPassCode === 'W-DD-2027') {
+        currentPassCode = generateUniquePassCode();
+      }
+      localStorage.setItem('wedding_guest_pass_code', currentPassCode);
+
+      const rsvpData = {
+        name,
+        phone,
+        attending,
+        guests,
+        events: eventsStr,
+        diet,
+        message,
+        passCode: currentPassCode,
+        timestamp: new Date().toISOString()
+      };
       localStorage.setItem('wedding_rsvp_deepanshu_deepanjali', JSON.stringify(rsvpData));
 
-      // Update modal pass
+      // Update modal pass details
       document.getElementById('passGuestName').textContent = name;
       document.getElementById('passGuestCount').textContent = `${guests} Guest(s)`;
+      document.getElementById('passEventsList').textContent = eventsStr;
       document.getElementById('passStatus').textContent = attending === 'yes' ? '✅ Joyfully Confirmed' : '❌ Regretfully Declined';
+      document.getElementById('passEntryCode').textContent = `ENTRY CODE: ${currentPassCode}`;
 
       modal.classList.add('active');
       triggerConfetti();
@@ -1065,19 +1113,86 @@ function initRsvp() {
     });
   }
 
+  if (copyPassBtn) {
+    copyPassBtn.addEventListener('click', () => {
+      const name = document.getElementById('passGuestName').textContent;
+      const count = document.getElementById('passGuestCount').textContent;
+      const events = document.getElementById('passEventsList').textContent;
+      const code = document.getElementById('passEntryCode').textContent;
+      const passText = `🎫 ROYAL WEDDING DIGITAL GUEST PASS\n\n👤 Guest: ${name}\n👥 Count: ${count}\n🎉 Events: ${events}\n🔑 ${code}\n📍 Venue: Hotel Vinayak, Hazaribagh, Jharkhand\n📅 Date: January 3, 2027`;
+      copyToClipboard(passText, '📋 Guest pass copied to clipboard!');
+    });
+  }
+
   // Direct WhatsApp RSVP generator
   if (waBtn) {
     waBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const name = document.getElementById('rsvpName')?.value.trim() || 'Guest';
-      const attending = document.getElementById('rsvpAttending')?.value === 'yes' ? 'Attending with joy!' : 'Unable to attend';
+      const attending = document.getElementById('rsvpAttending')?.value === 'yes' ? 'Joyfully Accept with Pleasure' : 'Unable to attend';
       const guests = document.getElementById('rsvpGuests')?.value || '1';
-      const diet = document.getElementById('rsvpDiet')?.value || 'Vegetarian';
+      const diet = document.getElementById('rsvpDiet')?.value || 'Pure Vegetarian';
       const msg = document.getElementById('rsvpMessage')?.value.trim() || 'Heartiest congratulations Deepanshu & Deepanjali!';
 
-      const text = `Namaste / Hello Deepanshu & Deepanjali,\n\nHere is my RSVP for your wedding at Hotel Vinayak, Hazaribagh:\n\n👤 Name: ${name}\n✨ Status: ${attending}\n👥 Guests: ${guests}\n🍽️ Meal: ${diet}\n🤍 Message: ${msg}\n\nLooking forward to celebrating with you!`;
-      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      const checkedBoxes = Array.from(document.querySelectorAll('input[name="rsvpEvent"]:checked')).map(cb => cb.parentElement.textContent.trim());
+      const eventsList = checkedBoxes.join(', ') || 'Shubh Vivah & Reception';
+
+      const text = `॥ ॐ श्री गणेशाय नमः ॥\n\nNamaste Deepanshu & Deepanjali,\n\nHere is my RSVP for your royal wedding at Hotel Vinayak, Hazaribagh:\n\n👤 Name: ${name}\n✨ Status: ${attending}\n👥 Number of Guests: ${guests}\n🎉 Events: ${eventsList}\n🍽️ Dietary Preference: ${diet}\n🤍 Message: ${msg}\n\nLooking forward to celebrating with you! 🌸`;
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
+    });
+  }
+}
+
+// --- WhatsApp Share & Personalized Link Generator Tool ---
+function initShareGenerator() {
+  const input = document.getElementById('guestNameInput');
+  const genBtn = document.getElementById('generateLinkBtn');
+  const box = document.getElementById('generatedLinkBox');
+  const display = document.getElementById('customUrlDisplay');
+  const copyBtn = document.getElementById('copyShareLinkBtn');
+  const shareBtn = document.getElementById('shareViaWhatsappBtn');
+
+  if (!genBtn || !input) return;
+
+  function generateLink() {
+    const val = input.value.trim();
+    if (!val) {
+      showToast('Please enter a guest name (e.g. Verma Family)');
+      return;
+    }
+    const origin = window.location.origin;
+    const path = window.location.pathname;
+    const cleanUrl = `${origin}${path}?guest=${encodeURIComponent(val)}`;
+
+    display.value = cleanUrl;
+    box.style.display = 'block';
+    showToast('✨ Custom link generated!');
+  }
+
+  genBtn.addEventListener('click', generateLink);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      generateLink();
+    }
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      if (display.value) {
+        copyToClipboard(display.value, '📋 Personalized invite link copied!');
+      }
+    });
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', () => {
+      const val = input.value.trim() || 'Respected Guest';
+      const link = display.value || `${window.location.origin}${window.location.pathname}`;
+      const msg = `॥ ॐ श्री गणेशाय नमः ॥\n\nDear ${val},\n\nWith divine blessings and heartfelt joy, we warmly invite you and your family to celebrate the auspicious wedding ceremony of Deepanshu Pratap & Deepanjali Kumari on January 3, 2027 at Hotel Vinayak, Hazaribagh, Jharkhand.\n\nPlease open your personalized digital invitation and view ceremony details here:\n${link}\n\nWe look forward to your gracious presence and blessings! 🤍🌸`;
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl, '_blank');
     });
   }
 }
@@ -1087,7 +1202,6 @@ function initGuestbook() {
   const container = document.getElementById('wishesWall');
   const postBtn = document.getElementById('postWishBtn');
 
-  // Load persisted wishes
   const local = localStorage.getItem('wedding_wishes_wall');
   if (local) {
     try {
@@ -1114,7 +1228,6 @@ function initGuestbook() {
       container.appendChild(card);
     });
 
-    // Attach like listeners
     document.querySelectorAll('.wish-heart-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = parseInt(btn.getAttribute('data-id'));
@@ -1134,9 +1247,9 @@ function initGuestbook() {
 
   if (postBtn) {
     postBtn.addEventListener('click', () => {
-      const name = document.getElementById('rsvpName')?.value.trim() || prompt('Enter your name:');
+      const name = document.getElementById('rsvpName')?.value.trim() || prompt('Enter your name / family:');
       if (!name) return;
-      const text = document.getElementById('rsvpMessage')?.value.trim() || prompt('Enter your warm wish for Zayn & Nora:');
+      const text = document.getElementById('rsvpMessage')?.value.trim() || prompt('Enter your warm wish for Deepanshu & Deepanjali:');
       if (!text) return;
 
       const newWish = {
@@ -1172,11 +1285,29 @@ function showToast(msg) {
 }
 
 function copyToClipboard(text, successMsg) {
-  navigator.clipboard.writeText(text).then(() => {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(successMsg || 'Copied to clipboard!');
+    }).catch(() => {
+      fallbackCopy(text, successMsg);
+    });
+  } else {
+    fallbackCopy(text, successMsg);
+  }
+}
+
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
     showToast(successMsg || 'Copied to clipboard!');
-  }).catch(() => {
-    showToast('Copied: ' + text);
-  });
+  } catch (err) {
+    showToast('Failed to copy: ' + text);
+  }
+  document.body.removeChild(ta);
 }
 
 // --- Initialization ---
@@ -1186,6 +1317,8 @@ function startApp() {
   initCountdown();
   initCarousel();
   initRsvp();
+  initPersonalizedGreeting();
+  initShareGenerator();
   initGuestbook();
 
   // Music toggle button
@@ -1220,7 +1353,7 @@ function startApp() {
 
   // Copy address
   document.getElementById('copyAddressBtn')?.addEventListener('click', () => {
-    copyToClipboard('Hotel Vinayak, Main Road, Hazaribagh, Jharkhand, India', '📍 Venue address copied!');
+    copyToClipboard('Hotel Vinayak, Main Road, Hazaribagh, Jharkhand 825301, India', '📍 Venue address copied!');
   });
 
   // Copy promo code

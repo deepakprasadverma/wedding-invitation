@@ -1383,3 +1383,574 @@ html, body {
     padding: 4px 10px;
   }
 }
+
+
+/* ========================================================
+   ENHANCED FEATURES: PERSONALIZATION, TRANSIT, HOSTS, CALENDAR
+   ======================================================== */
+
+/* Gate Personalized Guest Ribbon */
+.gate-guest-ribbon {
+  display: inline-block;
+  background: rgba(18, 30, 20, 0.92);
+  border: 1.5px solid var(--gold-primary);
+  color: var(--gold-light);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: pulseGoldGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGoldGlow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25); }
+  50% { box-shadow: 0 4px 25px rgba(212, 175, 55, 0.6); }
+}
+
+/* Inner Personalized Welcome Card */
+.personalized-banner {
+  background: linear-gradient(135deg, #fffcf5 0%, #f6edd9 100%);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin: 14px auto 18px;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+  position: relative;
+}
+.personalized-banner .guest-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.15);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+.personalized-banner .guest-salutation {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: #1e2c20;
+  margin-bottom: 4px;
+}
+.personalized-banner .guest-note {
+  font-size: 12.5px;
+  color: #4b544d;
+  line-height: 1.5;
+}
+
+/* Individual Event Calendar Pill */
+.event-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--gold-primary);
+  color: #88651a;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.event-cal-btn:hover {
+  background: var(--gold-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Route & Transit Section */
+.transit-section {
+  padding: 24px 18px;
+  text-align: center;
+}
+.transit-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  margin: 16px auto 0;
+  text-align: left;
+}
+.transit-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.transit-icon-wrap {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 10px;
+  background: #f4f7f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: 1px solid rgba(82, 107, 86, 0.2);
+}
+.transit-body {
+  flex: 1;
+}
+.transit-title {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e2e21;
+}
+.transit-desc {
+  font-size: 12.5px;
+  color: #4b544d;
+  margin-top: 2px;
+  line-height: 1.45;
+}
+.transit-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.transit-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #88651a;
+  background: #faf6ea;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Family Hosts Section */
+.family-hosts-section {
+  padding: 24px 18px;
+  text-align: center;
+}
+.hosts-container {
+  max-width: 380px;
+  margin: 14px auto 0;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 18px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+.hosts-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hosts-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: center;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+}
+.host-col h5 {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--light-sage);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.host-col p {
+  font-size: 12.5px;
+  color: #2a342b;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.coordinator-list {
+  margin-top: 12px;
+  text-align: left;
+}
+.coordinator-list h6 {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #88651a;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.coord-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #faf7f2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.coord-item a {
+  color: #1e7e34;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Virtual Attendance & Live Stream */
+.livestream-section {
+  padding: 20px 18px;
+  text-align: center;
+}
+.livestream-card {
+  background: linear-gradient(135deg, #1b291d, #273b2a);
+  border: 1px solid var(--gold-primary);
+  border-radius: 16px;
+  padding: 20px 16px;
+  color: #ffffff;
+  max-width: 380px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.livestream-card h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.livestream-card p {
+  font-size: 12.5px;
+  color: #c9d6ca;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.stream-live-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e63946;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+  transition: all 0.25s ease;
+}
+.stream-live-btn:hover {
+  background: #d62828;
+  transform: translateY(-1px);
+}
+
+/* WhatsApp Share & Custom Link Generator */
+.share-section {
+  padding: 24px 18px;
+  text-align: center;
+}
+.share-card {
+  background: #faf7f2;
+  border: 1px dashed var(--gold-primary);
+  border-radius: 16px;
+  padding: 18px 16px;
+  max-width: 380px;
+  margin: 12px auto 0;
+  text-align: center;
+}
+.share-input-row {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.share-input-row input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #c2cec3;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  outline: none;
+}
+.share-input-row input:focus {
+  border-color: var(--gold-primary);
+}
+.share-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.share-actions-row button, .share-actions-row a {
+  flex: 1;
+  text-align: center;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.share-wa-btn {
+  background: #25d366;
+  color: #ffffff;
+  border: none;
+}
+.share-copy-btn {
+  background: #ffffff;
+  border: 1px solid var(--gold-primary);
+  color: #88651a;
+}
+
+/* Calendar Modal Selection Dialog */
+.cal-modal-card {
+  max-width: 400px;
+}
+.cal-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  text-align: left;
+}
+.cal-option-row {
+  background: #faf7f2;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cal-info h6 {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  color: #1e2e21;
+}
+.cal-info p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.cal-row-actions {
+  display: flex;
+  gap: 6px;
+}
+.cal-mini-btn {
+  background: #ffffff;
+  border: 1px solid var(--gold-primary);
+  color: #88651a;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.cal-mini-btn:hover {
+  background: var(--gold-primary);
+  color: #ffffff;
+}
+
+/* RSVP Admin / Host Dashboard Modal */
+.admin-modal-card {
+  max-width: 480px;
+  text-align: left;
+}
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+.admin-stat-chip {
+  background: #faf7f2;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+}
+.admin-stat-chip .val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+.admin-stat-chip .lbl {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+.rsvp-table-container {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #e2e8e3;
+  border-radius: 10px;
+  margin: 12px 0;
+  background: #ffffff;
+}
+.admin-rsvp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+.admin-rsvp-table th, .admin-rsvp-table td {
+  padding: 7px 9px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.admin-rsvp-table th {
+  background: #f4f7f4;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  color: #243526;
+  position: sticky;
+  top: 0;
+}
+.admin-actions-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.admin-actions-bar button {
+  flex: 1;
+  padding: 9px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* ========================================================
+   Enhanced Luxury Features: Personalized Badge, Calendar & Share
+   ======================================================== */
+
+.personalized-guest-badge {
+  background: linear-gradient(135deg, #ffffff 0%, #faf7f0 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin: 14px 16px 6px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.personalized-guest-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #f6e6aa, #d4af37);
+}
+
+.guest-badge-decor {
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+
+.guest-salutation {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: #1e2e21;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.guest-subtext {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  color: #555e56;
+  line-height: 1.5;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* Event Specific Calendar Pills */
+.event-cal-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
+  color: var(--gold-dark);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.event-cal-btn:hover {
+  background: var(--gold-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+}
+
+.event-badge-icon {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+/* WhatsApp Share Invitation Section */
+.share-invite-section {
+  padding: 24px 18px;
+  text-align: center;
+}
+
+.share-card {
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 20px 18px;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  max-width: 480px;
+  margin: 12px auto 0;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
