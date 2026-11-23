@@ -1396,7 +1396,7 @@ function startApp() {
   // Copy Google Drive link
   document.getElementById('copyDriveLinkBtn')?.addEventListener('click', () => {
     const driveInput = document.getElementById('driveLinkInput');
-    const link = driveInput ? driveInput.value : 'https://drive.google.com/drive/folders/1DeepanshuDeepanjaliWedding2027Drive?usp=sharing';
+    const link = driveInput ? driveInput.value : 'https://drive.google.com/drive/folders/1LqzfAJHqNFsPJQHDk2XNQTnmVNQ2Tgi9?usp=sharing';
     copyToClipboard(link, '📂 Google Drive link copied to clipboard!');
   });
 
