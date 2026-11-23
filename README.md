@@ -77,6 +77,15 @@ A handcrafted, luxury interactive digital wedding invitation website matching th
 10. **Open Graph & WhatsApp Social Preview**:
     - High-resolution 1200x630 Open Graph preview image (`og-preview.png`) ensuring beautiful card previews when links are shared on WhatsApp and social media.
 
+11. **Wedding Photos & Google Drive Shared Album**:
+    - Centralized Google Drive folder linking pre-wedding shoot, ceremony albums, and high-res event downloads.
+    - Direct **"Upload Guest Photos"** button allowing attendees to upload photos and videos taken on their phones directly into the family cloud drive.
+    - 1-click **Copy Drive Link** tool.
+
+12. **Social Media & Live Streaming Channels**:
+    - Official Wedding Hashtag: `#DeepWedsDeepu2027` with 1-click copy button.
+    - Direct channel links for **Instagram** (`@deepanshu_pratap` & `@deepanjali_kumari`), **YouTube** (Ceremony live streams & highlights), and **Facebook** (Event page).
+
 ---
 
 ## 🌐 Live Deployments

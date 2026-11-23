@@ -1954,3 +1954,304 @@ html, body {
     transform: translateY(0);
   }
 }
+
+
+/* ========================================================
+   Wedding Photos & Google Drive Section
+   ======================================================== */
+
+.photos-drive-section {
+  padding: 30px 18px 20px;
+  text-align: center;
+}
+
+.photos-drive-card {
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: var(--shadow-soft);
+  max-width: 520px;
+  margin: 14px auto 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.photos-drive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #f6e6aa, #d4af37);
+}
+
+.drive-cloud-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.drive-heading {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: #1e2e21;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.drive-intro {
+  font-size: 13px;
+  color: #555e56;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.drive-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 480px) {
+  .drive-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.drive-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  text-align: left;
+  transition: all 0.28s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.drive-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.primary-drive-btn {
+  background: linear-gradient(135deg, #243827 0%, #172419 100%);
+  border: 1px solid var(--gold-primary);
+  color: #ffffff;
+}
+
+.upload-drive-btn {
+  background: linear-gradient(135deg, #fdfbf7 0%, #f6ede0 100%);
+  border: 1.5px dashed var(--gold-primary);
+  color: #243827;
+}
+
+.drive-action-btn .btn-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.drive-action-btn .btn-main-text {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.primary-drive-btn .btn-main-text {
+  color: #fce2aa;
+}
+
+.upload-drive-btn .btn-main-text {
+  color: #88651a;
+}
+
+.drive-action-btn .btn-sub-text {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.guest-upload-notice {
+  background: #fbf9f5;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.notice-text {
+  font-size: 12px;
+  color: #4b544d;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.drive-copy-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.drive-link-field {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: #666;
+  outline: none;
+}
+
+/* ========================================================
+   Social Media Channels & Hashtag Section
+   ======================================================== */
+
+.social-channels-section {
+  padding: 24px 18px 28px;
+  text-align: center;
+}
+
+.hashtag-pill-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.hashtag-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.hashtag-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--gold-primary);
+  border-radius: 30px;
+  padding: 6px 14px 6px 18px;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+}
+
+.hashtag-text {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e2f22;
+  letter-spacing: 0.5px;
+}
+
+.hashtag-copy-btn {
+  background: linear-gradient(135deg, #d4af37, #aa7c11);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hashtag-copy-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.social-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+@media (max-width: 540px) {
+  .social-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.social-platform-card {
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 16px;
+  padding: 18px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.social-platform-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-primary);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.22);
+}
+
+.platform-icon-wrap {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.platform-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e2c20;
+  margin-bottom: 4px;
+}
+
+.platform-desc {
+  font-size: 11px;
+  color: #666e67;
+  line-height: 1.45;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.social-handles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.handle-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #1f3022;
+  text-decoration: none;
+  background: #fbf9f4;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.handle-link:hover {
+  background: var(--gold-primary);
+  color: #ffffff;
+  border-color: var(--gold-primary);
+}
+
+.handle-link strong {
+  font-weight: 700;
+}

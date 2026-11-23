@@ -112,7 +112,23 @@ const translations = {
     whatsappRsvp: 'Send RSVP via WhatsApp 💬',
     guestbookTitle: 'Wishes & Blessings',
     guestbookSubtitle: 'Leave your love and congratulatory notes',
-    postWishBtn: 'Post Wish 💌'
+    postWishBtn: 'Post Wish 💌',
+    photosDriveTitle: 'Wedding Photos & Drive',
+    photosDriveSubtitle: 'View all ceremony & shoot albums or upload your own clicks',
+    driveHeading: 'Official Wedding Google Drive',
+    driveIntro: 'All high-resolution pictures and videos from the Pre-Wedding Shoot, Haldi, Mehendi, Shubh Vivah, and Reception are gathered in our shared Google Drive folder.',
+    viewDriveBtn: 'View Photos & Videos',
+    viewDriveSub: 'Open Shared Google Drive',
+    uploadDriveBtn: 'Upload Guest Photos',
+    uploadDriveSub: 'Drop your ceremony clicks here',
+    guestUploadNotice: '✨ Captured special moments? Please upload any photos or videos you took during the wedding ceremonies into this shared folder so our families can treasure them forever!',
+    copyDriveLink: '📋 Copy Drive Link',
+    socialSectionTitle: 'Follow & Tag The Couple',
+    socialSectionSubtitle: 'Watch live streams, celebration videos and tag us on social media',
+    officialHashtag: 'OFFICIAL WEDDING HASHTAG',
+    instaDesc: 'Follow the couple & tag them in your stories and reels!',
+    ytDesc: 'Watch wedding highlights, pre-wedding teasers & live ceremonies!',
+    fbDesc: 'Join our official wedding celebration page for live updates & memories!'
   },
   hi: {
     tapToOpen: 'खोलने के लिए स्पर्श करें',
@@ -204,7 +220,23 @@ const translations = {
     whatsappRsvp: 'व्हाट्सएप पर RSVP भेजें 💬',
     guestbookTitle: 'शुभकामनाएं एवं आशीर्वाद',
     guestbookSubtitle: 'नवदंपति के लिए अपना प्यार और शुभकामनाएं साझा करें',
-    postWishBtn: 'संदेश भेजें 💌'
+    postWishBtn: 'संदेश भेजें 💌',
+    photosDriveTitle: 'वेडिंग फोटोज़ एवं गूगल ड्राइव',
+    photosDriveSubtitle: 'समारोह की तस्वीरें देखें या अपने कैमरे से खींची गई यादें अपलोड करें',
+    driveHeading: 'वेडिंग गूगल ड्राइव एलबम',
+    driveIntro: 'प्री-वेडिंग शूट, हल्दी, मेहंदी, शुभ विवाह एवं प्रीतिभोज की सभी उच्च गुणवत्ता वाली तस्वीरें और वीडियो हमारे गूगल ड्राइव फोल्डर में उपलब्ध हैं।',
+    viewDriveBtn: 'सभी फोटोज़ व वीडियो देखें',
+    viewDriveSub: 'गूगल ड्राइव फोल्डर खोलें',
+    uploadDriveBtn: 'अपनी खींची तस्वीरें अपलोड करें',
+    uploadDriveSub: 'समारोह के खूबसूरत पल यहाँ साझा करें',
+    guestUploadNotice: '✨ क्या आपने समारोह में खूबसूरत तस्वीरें या वीडियो लिए हैं? कृपया इस साझा ड्राइव में अपलोड करें ताकि हम सब इन अनमोल यादों को हमेशा संजोकर रख सकें!',
+    copyDriveLink: '📋 ड्राइव लिंक कॉपी करें',
+    socialSectionTitle: 'सोशल मीडिया एवं लाइव स्ट्रीम',
+    socialSectionSubtitle: 'समारोह का लाइव प्रसारण देखें एवं सोशल मीडिया पर हमें टैग करें',
+    officialHashtag: 'ऑफिशियल वेडिंग हैशटैग',
+    instaDesc: 'वर-वधू को इंस्टाग्राम पर फॉलो करें और अपनी रील्स व स्टोरीज़ में टैग करें!',
+    ytDesc: 'विवाह समारोह की लाइव स्ट्रीमिंग एवं खूबसूरत वीडियो हाइलाइट्स देखें!',
+    fbDesc: 'फेसबुक पर हमारे वेडिंग इवेंट पेज से जुड़ें एवं यादें साझा करें!'
   }
 };
 
@@ -1359,6 +1391,19 @@ function startApp() {
   // Copy promo code
   document.getElementById('copyPromoBtn')?.addEventListener('click', () => {
     copyToClipboard('VINAYAK2027', '🏷️ Promo code VINAYAK2027 copied!');
+  });
+
+  // Copy Google Drive link
+  document.getElementById('copyDriveLinkBtn')?.addEventListener('click', () => {
+    const driveInput = document.getElementById('driveLinkInput');
+    const link = driveInput ? driveInput.value : 'https://drive.google.com/drive/folders/1DeepanshuDeepanjaliWedding2027Drive?usp=sharing';
+    copyToClipboard(link, '📂 Google Drive link copied to clipboard!');
+  });
+
+  // Copy Wedding Hashtag
+  document.getElementById('copyHashtagBtn')?.addEventListener('click', () => {
+    const hashtag = document.getElementById('weddingHashtagText')?.textContent.trim() || '#DeepWedsDeepu2027';
+    copyToClipboard(hashtag, `✨ Hashtag ${hashtag} copied to clipboard!`);
   });
 }
 
