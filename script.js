@@ -658,13 +658,21 @@ function initScratchCard() {
     canvas.style.opacity = '0';
     canvas.style.pointerEvents = 'none';
     triggerConfetti();
-    weddingAudio.playChime();
+    try { weddingAudio.playChime(); } catch(e){}
     const hint = document.getElementById('scratchPercentHint');
     if (hint) {
       hint.textContent = '✨ Date Revealed! ✨';
       hint.style.color = '#aa7c11';
       hint.style.fontWeight = '700';
     }
+  }
+
+  window.revealCardCompletely = revealCardCompletely;
+  const hint = document.getElementById('scratchPercentHint');
+  if (hint) {
+    hint.style.cursor = 'pointer';
+    hint.title = 'Click to reveal date';
+    hint.addEventListener('click', revealCardCompletely);
   }
 }
 
@@ -890,20 +898,24 @@ function initGateOpening() {
     state.isOpened = true;
 
     // Sound effect & music start
-    weddingAudio.playChime();
+    try { weddingAudio.playChime(); } catch(e){}
     setTimeout(() => {
-      weddingAudio.startMelody();
+      try { weddingAudio.startMelody(); } catch(e){}
     }, 400);
 
-    gate.classList.add('opened');
-    if (container) container.classList.add('gate-opened');
-    triggerConfetti();
+    const g = document.getElementById('gateOverlay');
+    const c = document.querySelector('.invitation-container');
+    if (g) g.classList.add('opened');
+    if (c) c.classList.add('gate-opened');
+    try { triggerConfetti(); } catch(e){}
 
     // Init scratch card once container is unveiled
     setTimeout(() => {
-      initScratchCard();
+      try { initScratchCard(); } catch(e){}
     }, 500);
   }
+
+  window.openGate = openGate;
 
   seal.addEventListener('click', openGate);
   gate.addEventListener('click', openGate);

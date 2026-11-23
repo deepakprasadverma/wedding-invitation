@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Deepanshu &amp; Deepanjali — Shubh Vivah Wedding Invitation</title>
   <meta name="description" content="You're cordially invited to celebrate the wedding ceremony of Deepanshu Pratap &amp; Deepanjali Kumari at Hotel Vinayak, Hazaribagh on January 3, 2027.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.2">
   <link rel="icon" href="assets/royal-seal.svg" type="image/svg+xml">
 </head>
 <body>
@@ -47,7 +47,7 @@
       <!-- ========================================================
            GATE OVERLAY (INITIAL TAP TO OPEN SCREEN)
            ======================================================== -->
-      <div id="gateOverlay" class="gate-overlay">
+      <div id="gateOverlay" class="gate-overlay" onclick="window.openGate &amp;&amp; window.openGate()">
         <!-- Left Sage Green Curtain -->
         <div class="curtain-panel curtain-left"></div>
         <!-- Right Sage Green Curtain -->
@@ -56,7 +56,7 @@
         <div class="golden-seam"></div>
 
         <!-- Center Royal Seal Badge -->
-        <div id="mainSealBtn" class="seal-wrapper" role="button" tabindex="0" aria-label="Tap to open wedding invitation">
+        <div id="mainSealBtn" class="seal-wrapper" role="button" tabindex="0" aria-label="Tap to open wedding invitation" onclick="window.openGate &amp;&amp; window.openGate()">
           <img src="assets/royal-seal.svg" alt="Royal Wedding Badge - Tap to Open" class="seal-img">
           <div class="tap-hint" data-i18n="tapToOpen">TAP TO OPEN</div>
         </div>
@@ -552,6 +552,6 @@
   <!-- Toast Notification Popup -->
   <div id="toast" class="toast-msg"></div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2.2"></script>
 </body>
 </html>
