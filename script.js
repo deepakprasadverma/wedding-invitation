@@ -384,7 +384,10 @@ class WeddingAudioEngine {
     };
 
     playNextNote();
+  } catch (e) {
+    console.warn('Audio playback error:', e);
   }
+}
 
   playFluteNote(freq, duration) {
     const now = this.ctx.currentTime;
@@ -903,6 +906,9 @@ function initGateOpening() {
   }
 
   seal.addEventListener('click', openGate);
+  gate.addEventListener('click', openGate);
+  seal.addEventListener('touchend', (e) => { e.preventDefault(); openGate(); }, { passive: false });
+  gate.addEventListener('touchend', (e) => { e.preventDefault(); openGate(); }, { passive: false });
   seal.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
