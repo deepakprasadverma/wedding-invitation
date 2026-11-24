@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Sacred Gold & Amber Radial Glow -->
+    <radialGradient id="sacredGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff4cc" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#f6e6aa" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#d4af37" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#243827" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Royal Gold Gradient -->
+    <linearGradient id="divineGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8d6"/>
+      <stop offset="25%" stop-color="#f5d77f"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="75%" stop-color="#aa7c11"/>
+      <stop offset="100%" stop-color="#73500a"/>
+    </linearGradient>
+
+    <!-- Sacred Saffron / Sindoor Red Gradient -->
+    <linearGradient id="sacredRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7b54"/>
+      <stop offset="50%" stop-color="#d62828"/>
+      <stop offset="100%" stop-color="#7a0000"/>
+    </linearGradient>
+
+    <!-- Lotus Pink Gradient -->
+    <linearGradient id="lotusPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffccd5"/>
+      <stop offset="50%" stop-color="#fb6f92"/>
+      <stop offset="100%" stop-color="#c9184a"/>
+    </linearGradient>
+
+    <!-- Filter for Heavenly Glow -->
+    <filter id="goldShimmer" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Aura Disc -->
+  <circle cx="200" cy="200" r="190" fill="url(#sacredGlow)"/>
+  <circle cx="200" cy="200" r="175" fill="none" stroke="url(#divineGold)" stroke-width="2" stroke-dasharray="6,4" opacity="0.75"/>
+  <circle cx="200" cy="200" r="182" fill="none" stroke="url(#divineGold)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Prabhamandal (Ray of Light Spokes) -->
+  <g stroke="url(#divineGold)" stroke-width="1.5" opacity="0.45">
+    <line x1="200" y1="10" x2="200" y2="40"/>
+    <line x1="200" y1="360" x2="200" y2="390"/>
+    <line x1="10" y1="200" x2="40" y2="200"/>
+    <line x1="360" y1="200" x2="390" y2="200"/>
+    <line x1="66" y1="66" x2="88" y2="88"/>
+    <line x1="334" y1="66" x2="312" y2="88"/>
+    <line x1="66" y1="334" x2="88" y2="312"/>
+    <line x1="334" y1="334" x2="312" y2="312"/>
+  </g>
+
+  <!-- Sacred Lotus Throne Base (कमलासन) -->
+  <g transform="translate(0, 40)">
+    <!-- Back Lotus Petals -->
+    <path d="M 120,290 C 90,260 110,230 160,250 C 140,280 130,285 120,290 Z" fill="url(#lotusPink)" opacity="0.85"/>
+    <path d="M 280,290 C 310,260 290,230 240,250 C 260,280 270,285 280,290 Z" fill="url(#lotusPink)" opacity="0.85"/>
+    <path d="M 200,240 C 175,200 225,200 200,240 Z" fill="url(#lotusPink)"/>
+
+    <!-- Front Lotus Petals -->
+    <path d="M 80,310 C 130,270 170,300 200,325 C 150,330 100,325 80,310 Z" fill="url(#lotusPink)"/>
+    <path d="M 320,310 C 270,270 230,300 200,325 C 250,330 300,325 320,310 Z" fill="url(#lotusPink)"/>
+    <path d="M 140,325 C 170,280 230,280 260,325 C 200,340 200,340 140,325 Z" fill="url(#sacredRed)" stroke="url(#divineGold)" stroke-width="1.5"/>
+    
+    <!-- Lotus Golden Pericarp Rim -->
+    <ellipse cx="200" cy="326" rx="80" ry="14" fill="url(#divineGold)" stroke="#aa7c11" stroke-width="1"/>
+  </g>
+
+  <!-- ========================================================
+       SHREE SIDDHIVINAYAK SACRED FORM (Iconic Ganesha Murti)
+       ======================================================== -->
+  <g id="siddhiVinayakFigure" filter="url(#goldShimmer)">
+    <!-- Divine Head / Forehead Arch (Mastak) -->
+    <path d="M 140,165 C 130,120 160,105 200,105 C 240,105 270,120 260,165 C 255,190 240,210 200,215 C 160,210 145,190 140,165 Z" 
+          fill="url(#sacredRed)" stroke="url(#divineGold)" stroke-width="2.5"/>
+
+    <!-- Left Large Ear (Karna) -->
+    <path d="M 145,130 C 85,110 70,185 130,195 C 145,198 148,175 145,130 Z" 
+          fill="url(#sacredRed)" stroke="url(#divineGold)" stroke-width="3"/>
+    <path d="M 135,140 C 95,125 85,175 125,185" fill="none" stroke="url(#divineGold)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Kundal (Golden Earring) Left -->
+    <circle cx="100" cy="188" r="7" fill="url(#divineGold)" stroke="#73500a" stroke-width="1"/>
+    <circle cx="100" cy="188" r="3" fill="#ffffff"/>
+
+    <!-- Right Large Ear (Karna) -->
+    <path d="M 255,130 C 315,110 330,185 270,195 C 255,198 252,175 255,130 Z" 
+          fill="url(#sacredRed)" stroke="url(#divineGold)" stroke-width="3"/>
+    <path d="M 265,140 C 305,125 315,175 275,185" fill="none" stroke="url(#divineGold)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Kundal (Golden Earring) Right -->
+    <circle cx="300" cy="188" r="7" fill="url(#divineGold)" stroke="#73500a" stroke-width="1"/>
+    <circle cx="300" cy="188" r="3" fill="#ffffff"/>
+
+    <!-- Sacred Siddhivinayak Right-Turned Trunk (सुंड - सिद्धि विनायक का दक्षिण मुखी सूंड) -->
+    <path d="M 190,190 C 185,225 185,250 215,260 C 245,270 260,250 255,230 C 250,212 235,215 235,225 C 235,232 242,238 245,232" 
+          fill="none" stroke="url(#sacredRed)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Gold Ornament Line down Trunk -->
+    <path d="M 190,190 C 185,225 185,250 215,260 C 245,270 260,250 255,230" 
+          fill="none" stroke="url(#divineGold)" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Modak / Laddu held by Trunk (मोदक) -->
+    <ellipse cx="242" cy="225" rx="10" ry="10" fill="url(#divineGold)" stroke="#73500a" stroke-width="1.5"/>
+    <circle cx="242" cy="221" r="2.5" fill="#ffffff"/>
+
+    <!-- Tusk (Ekadanta) Left -->
+    <path d="M 168,198 L 152,215 L 164,208 Z" fill="#ffffff" stroke="url(#divineGold)" stroke-width="1.5"/>
+    <!-- Broken Tusk Right -->
+    <path d="M 230,198 L 235,206 L 226,204 Z" fill="#ffffff" stroke="url(#divineGold)" stroke-width="1"/>
+
+    <!-- Compassionate Divine Eyes (नेत्र) -->
+    <ellipse cx="172" cy="155" rx="10" ry="5.5" fill="#ffffff" stroke="#aa7c11" stroke-width="1.2"/>
+    <circle cx="173" cy="155" r="3.2" fill="#241400"/>
+    <circle cx="174.5" cy="153.5" r="1.2" fill="#ffffff"/>
+
+    <ellipse cx="228" cy="155" rx="10" ry="5.5" fill="#ffffff" stroke="#aa7c11" stroke-width="1.2"/>
+    <circle cx="227" cy="155" r="3.2" fill="#241400"/>
+    <circle cx="225.5" cy="153.5" r="1.2" fill="#ffffff"/>
+
+    <!-- Sacred Trishul Tilak & Chandrabindu on Forehead (त्रिशूल तिलक) -->
+    <!-- Center Vermilion Vertical Stroke -->
+    <path d="M 200,120 L 200,165" stroke="url(#divineGold)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 200,123 L 200,162" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="200" cy="138" r="4.5" fill="#ffdd00"/>
+    <!-- Crescent Moon / Chandra -->
+    <path d="M 186,132 Q 200,146 214,132 Q 200,138 186,132 Z" fill="url(#divineGold)"/>
+
+    <!-- Royal Ornate Golden Crown / Mukut (मुकुट) -->
+    <!-- Mukut Base Tier -->
+    <path d="M 148,115 C 175,108 225,108 252,115 L 246,88 C 220,93 180,93 154,88 Z" 
+          fill="url(#divineGold)" stroke="#aa7c11" stroke-width="2"/>
+    <!-- Rubies & Emeralds on Mukut -->
+    <circle cx="200" cy="102" r="5" fill="#d62828"/>
+    <circle cx="176" cy="104" r="4" fill="#2d6a4f"/>
+    <circle cx="224" cy="104" r="4" fill="#2d6a4f"/>
+    <circle cx="160" cy="106" r="3.5" fill="#d62828"/>
+    <circle cx="240" cy="106" r="3.5" fill="#d62828"/>
+
+    <!-- Mukut Mid Tier -->
+    <path d="M 160,88 C 180,82 220,82 240,88 L 232,58 C 215,62 185,62 168,58 Z" 
+          fill="url(#divineGold)" stroke="#aa7c11" stroke-width="2"/>
+    <polygon points="200,72 195,80 205,80" fill="#d62828"/>
+
+    <!-- Mukut Pinnacle / Kalash Shikhar (शिखर) -->
+    <path d="M 180,58 C 190,40 210,40 220,58 Z" fill="url(#divineGold)" stroke="#aa7c11" stroke-width="1.5"/>
+    <circle cx="200" cy="38" r="6" fill="url(#divineGold)"/>
+    <path d="M 200,26 L 200,34" stroke="url(#divineGold)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="200" cy="24" r="2.5" fill="#ffffff"/>
+
+    <!-- Abhay Mudra / Blessing Palm (अभय हस्त - दायें हाथ में वरदान) -->
+    <g transform="translate(92, 212)">
+      <circle cx="26" cy="26" r="24" fill="url(#sacredRed)" stroke="url(#divineGold)" stroke-width="2"/>
+      <!-- Holy Om Symbol in Palm -->
+      <text x="26" y="32" font-family="'Rozha One', 'Cinzel', serif" font-size="19" font-weight="700" fill="url(#divineGold)" text-anchor="middle">ॐ</text>
+    </g>
+
+    <!-- Modak Patra in Left Hand (मोदक पात्र) -->
+    <g transform="translate(254, 212)">
+      <!-- Golden Bowl of Modaks -->
+      <path d="M 8,26 Q 26,44 44,26 Z" fill="url(#divineGold)" stroke="#73500a" stroke-width="1.5"/>
+      <circle cx="18" cy="22" r="5" fill="#fdf0cd" stroke="#aa7c11" stroke-width="1"/>
+      <circle cx="26" cy="16" r="6" fill="#fce2aa" stroke="#aa7c11" stroke-width="1"/>
+      <circle cx="34" cy="22" r="5" fill="#fdf0cd" stroke="#aa7c11" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- Ornate Golden Garland / Haar (पुष्प माला) -->
+  <path d="M 148,185 Q 200,285 252,185" fill="none" stroke="url(#divineGold)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,6"/>
+  <circle cx="200" cy="235" r="5" fill="#d62828"/>
+  <circle cx="180" cy="225" r="4" fill="#ffb703"/>
+  <circle cx="220" cy="225" r="4" fill="#ffb703"/>
+
+  <!-- Auspicious Vedic Sanskrit Bottom Inscription Banner -->
+  <rect x="50" y="360" width="300" height="32" rx="16" fill="#243827" stroke="url(#divineGold)" stroke-width="1.5"/>
+  <text x="200" y="381" font-family="'Rozha One', 'Cinzel', serif" font-size="13.5" font-weight="700" fill="#fce2aa" text-anchor="middle" letter-spacing="1">
+    ॥ ॐ गं गणपतये नमः ॥
+  </text>
+</svg>

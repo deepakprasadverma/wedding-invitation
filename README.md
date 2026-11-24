@@ -86,6 +86,15 @@ A handcrafted, luxury interactive digital wedding invitation website matching th
     - Official Wedding Hashtag: `#DeepWedsDeepu2027` with 1-click copy button.
     - Direct channel links for **Instagram** (`@deepanshu_pratap` & `@deepanjali_kumari`), **YouTube** (Ceremony live streams & highlights), and **Facebook** (Event page).
 
+13. **Shree Siddhivinayak Sacred Divine Emblem**:
+    - Auspicious, divine image of Bhagwan Siddhivinayak placed with golden halo above "Weds • Shubh Vivah" with the sacred mantra *॥ ॐ श्री सिद्धि विनायकाय नमः ॥*.
+
+14. **Ring Ceremony & Pre-Wedding Shoot Showcase**:
+    - High-resolution romantic pre-wedding shoot and ring ceremony (Sagai) moments in the photo carousel directly above the Google Drive photo section.
+
+15. **Hotel Vinayak Venue Showcase**:
+    - Illuminated luxury palace hotel banquet photo showcase integrated directly within the Venue & Directions section.
+
 ---
 
 ## 🌐 Live Deployments
