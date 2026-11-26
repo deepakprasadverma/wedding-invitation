@@ -13,10 +13,13 @@ const state = {
   carouselIndex: 0,
   targetDate: new Date('2027-01-03T19:00:00+05:30').getTime(),
   guestName: '',
+  cheers: { groom: 142, bride: 156 },
+  wishesFilter: 'top',
   wishes: [
-    { id: 1, name: 'Amit & Priya Verma', text: 'Wishing Deepanshu & Deepanjali a lifetime of togetherness, boundless joy, and blessings! Heartiest congratulations! 🌸', date: 'Yesterday', likes: 16 },
-    { id: 2, name: 'Uncle Rajesh & Family', text: 'So happy and proud! May your sacred union at Hotel Vinayak be filled with divine love and prosperity. 🤍', date: '2 days ago', likes: 24 },
-    { id: 3, name: 'Rohit & Sneha', text: 'Counting down to January 3rd, 2027! Can’t wait to celebrate the grand Baarat and Sangeet in Hazaribagh! ✨', date: '3 days ago', likes: 11 }
+    { id: 1, name: 'Uncle Rajesh & Family', team: 'groom', text: 'So happy and proud! May your sacred union at Hotel Vinayak be filled with divine love, peace and prosperity. 🤍', date: '2 days ago', likes: 42, reactions: { prem: 22, aashirwad: 14, shubh: 6 } },
+    { id: 2, name: 'Amit & Priya Verma', team: 'both', text: 'Wishing Deepanshu & Deepanjali a lifetime of togetherness, boundless joy, and blessings! Heartiest congratulations! 🌸', date: 'Yesterday', likes: 35, reactions: { prem: 18, aashirwad: 10, shubh: 7 } },
+    { id: 3, name: 'Neha & Pooja (Bridal Squad)', team: 'bride', text: 'Counting down to January 3rd, 2027! Deepanjali will be the most gorgeous bride ever! Team Bride is ready to dance! ✨💃', date: '3 days ago', likes: 29, reactions: { prem: 15, aashirwad: 8, shubh: 6 } },
+    { id: 4, name: 'Rohit & Squad (Baarat Gang)', team: 'groom', text: 'Can’t wait for the grand Baarat in Hazaribagh! Dhol, shehnai and royal swag! Deepanshu bhai ki shaadi! 🕺🪔', date: '4 days ago', likes: 21, reactions: { prem: 11, aashirwad: 5, shubh: 5 } }
   ]
 };
 
@@ -112,8 +115,10 @@ const translations = {
     messageLabel: 'Your Warm Wishes / Message',
     confirmRsvp: 'Confirm Attendance & Get Pass ✨',
     whatsappRsvp: 'Send RSVP via WhatsApp 💬',
-    guestbookTitle: 'Wishes & Blessings',
-    guestbookSubtitle: 'Leave your love and congratulatory notes',
+    guestbookTitle: 'Wishes Leaderboard',
+    guestbookSubtitle: 'Most loved blessings for Deepanshu & Deepanjali',
+    cheerTitle: 'Team Groom vs Team Bride',
+    cheerSubtitle: "Vote for your squad & let's see who cheers louder! 📣",
     postWishBtn: 'Post Wish 💌',
     photosDriveTitle: 'Wedding Photos & Drive',
     photosDriveSubtitle: 'View all ceremony & shoot albums or upload your own clicks',
@@ -222,8 +227,10 @@ const translations = {
     messageLabel: 'वर-वधू के लिए शुभकामना संदेश',
     confirmRsvp: 'उपस्थिति पुष्टि करें एवं पास पाएं ✨',
     whatsappRsvp: 'व्हाट्सएप पर RSVP भेजें 💬',
-    guestbookTitle: 'शुभकामनाएं एवं आशीर्वाद',
-    guestbookSubtitle: 'नवदंपति के लिए अपना प्यार और शुभकामनाएं साझा करें',
+    guestbookTitle: 'शुभकामनाओं का लीडरबोर्ड',
+    guestbookSubtitle: 'नवदंपति के लिए सर्वाधिक प्रिय एवं पावन आशीर्वाद',
+    cheerTitle: 'लड़के वाले vs लड़की वाले',
+    cheerSubtitle: 'अपने पसंदीदा पक्ष को चीयर करें और उत्साह बढ़ाएं! 📣',
     postWishBtn: 'संदेश भेजें 💌',
     photosDriveTitle: 'वेडिंग फोटोज़ एवं गूगल ड्राइव',
     photosDriveSubtitle: 'समारोह की तस्वीरें देखें या अपने कैमरे से खींची गई यादें अपलोड करें',
@@ -1233,76 +1240,247 @@ function initShareGenerator() {
   }
 }
 
-// --- Guestbook Wishes Wall ---
+// --- Wedding Cheer Battle (Team Groom vs Team Bride) ---
+function initCheerBattle() {
+  const localCheers = localStorage.getItem('wedding_cheer_battle');
+  if (localCheers) {
+    try { state.cheers = JSON.parse(localCheers); } catch (e) {}
+  }
+
+  function updateCheerUI() {
+    const groomCount = state.cheers.groom || 0;
+    const brideCount = state.cheers.bride || 0;
+    const total = Math.max(groomCount + brideCount, 1);
+    const groomPct = Math.round((groomCount / total) * 100);
+    const bridePct = 100 - groomPct;
+
+    const groomScore = document.getElementById('groomScoreCount');
+    const brideScore = document.getElementById('brideScoreCount');
+    const groomFill = document.getElementById('groomMeterFill');
+    const brideFill = document.getElementById('brideMeterFill');
+    const groomPctText = document.getElementById('groomPctText');
+    const bridePctText = document.getElementById('bridePctText');
+
+    if (groomScore) groomScore.textContent = `${groomCount} Cheers`;
+    if (brideScore) brideScore.textContent = `${brideCount} Cheers`;
+    if (groomFill) groomFill.style.width = `${groomPct}%`;
+    if (brideFill) brideFill.style.width = `${bridePct}%`;
+    if (groomPctText) groomPctText.textContent = `${groomPct}%`;
+    if (bridePctText) bridePctText.textContent = `${bridePct}%`;
+  }
+
+  updateCheerUI();
+
+  document.getElementById('voteGroomBtn')?.addEventListener('click', () => {
+    state.cheers.groom = (state.cheers.groom || 0) + 1;
+    localStorage.setItem('wedding_cheer_battle', JSON.stringify(state.cheers));
+    updateCheerUI();
+    showToast('🕺 +1 Cheer for Team Groom (लड़के वाले)!');
+    triggerConfetti();
+    try { weddingAudio.playChime(); } catch(e){}
+  });
+
+  document.getElementById('voteBrideBtn')?.addEventListener('click', () => {
+    state.cheers.bride = (state.cheers.bride || 0) + 1;
+    localStorage.setItem('wedding_cheer_battle', JSON.stringify(state.cheers));
+    updateCheerUI();
+    showToast('💃 +1 Cheer for Team Bride (लड़की वाले)!');
+    triggerConfetti();
+    try { weddingAudio.playChime(); } catch(e){}
+  });
+}
+
+// --- Wishes & Blessings Leaderboard Engine ---
 function initGuestbook() {
-  const container = document.getElementById('wishesWall');
+  const podiumContainer = document.getElementById('wishesPodium');
+  const wallContainer = document.getElementById('wishesWall');
   const postBtn = document.getElementById('postWishBtn');
+  const modal = document.getElementById('postWishModal');
+  const closeModal = document.getElementById('closeWishModalBtn');
+  const postForm = document.getElementById('postWishForm');
+  const filterTopBtn = document.getElementById('filterTopBtn');
+  const filterLatestBtn = document.getElementById('filterLatestBtn');
 
   const local = localStorage.getItem('wedding_wishes_wall');
   if (local) {
-    try {
-      state.wishes = JSON.parse(local);
-    } catch (e) {}
+    try { state.wishes = JSON.parse(local); } catch (e) {}
   }
 
-  function renderWishes() {
-    if (!container) return;
-    container.innerHTML = '';
-    state.wishes.forEach((w) => {
+  function renderPodium() {
+    if (!podiumContainer) return;
+    const sorted = [...state.wishes].sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    const top3 = sorted.slice(0, 3);
+    if (top3.length < 3) {
+      podiumContainer.innerHTML = '';
+      return;
+    }
+
+    const ranks = [
+      { rank: 1, item: top3[0], badge: '👑 🥇', label: '#1 Grand Blessing', class: 'rank-1' },
+      { rank: 2, item: top3[1], badge: '🥈', label: '#2 Royal Blessing', class: 'rank-2' },
+      { rank: 3, item: top3[2], badge: '🥉', label: '#3 Auspicious', class: 'rank-3' }
+    ];
+
+    podiumContainer.innerHTML = ranks.map(r => `
+      <div class="podium-card ${r.class}">
+        <div class="podium-badge">${r.badge}</div>
+        <div class="podium-author">${escapeHtml(r.item.name)}</div>
+        <div class="podium-quote">"${escapeHtml(r.item.text)}"</div>
+        <span class="podium-score">💖 ${r.item.likes || 1} Blessings</span>
+      </div>
+    `).join('');
+  }
+
+  function renderWall() {
+    if (!wallContainer) return;
+    wallContainer.innerHTML = '';
+
+    let list = [...state.wishes];
+    if (state.wishesFilter === 'top') {
+      list.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    } else {
+      list.sort((a, b) => (b.id || 0) - (a.id || 0));
+    }
+
+    list.forEach((w, index) => {
       const card = document.createElement('div');
-      card.className = 'wish-card';
+      card.className = `wish-card ${index === 0 && state.wishesFilter === 'top' ? 'featured-rank-1' : ''}`;
+
+      const teamClass = w.team === 'groom' ? 'groom' : w.team === 'bride' ? 'bride' : 'both';
+      const teamLabel = w.team === 'groom' ? '🕺 Team Groom' : w.team === 'bride' ? '💃 Team Bride' : '🌸 Family & Friends';
+      const rankBadge = state.wishesFilter === 'top' ? `<span class="wish-rank-pill">#${index + 1}</span>` : '';
+
       card.innerHTML = `
-        <div class="wish-author">
-          <span>${escapeHtml(w.name)}</span>
-          <span class="wish-date">${escapeHtml(w.date)}</span>
+        <div class="wish-card-header">
+          <div class="wish-author-group">
+            <span class="wish-author-name">${escapeHtml(w.name)}</span>
+            <span class="team-badge ${teamClass}">${teamLabel}</span>
+          </div>
+          <div>
+            ${rankBadge}
+            <span class="wish-date">${escapeHtml(w.date || 'Recently')}</span>
+          </div>
         </div>
         <p class="wish-text">"${escapeHtml(w.text)}"</p>
-        <button class="wish-heart-btn" data-id="${w.id}">
-          ❤️ <span>${w.likes || 1}</span>
-        </button>
+        <div class="wish-reactions-bar">
+          <div class="wish-reaction-pills">
+            <button type="button" class="reaction-pill" data-id="${w.id}" data-type="prem" title="Send Love">
+              ❤️ <span>${w.reactions?.prem || Math.floor((w.likes || 1) * 0.5) || 1}</span>
+            </button>
+            <button type="button" class="reaction-pill" data-id="${w.id}" data-type="aashirwad" title="Send Auspicious Blessings">
+              🌸 <span>${w.reactions?.aashirwad || Math.floor((w.likes || 1) * 0.3) || 1}</span>
+            </button>
+            <button type="button" class="reaction-pill" data-id="${w.id}" data-type="shubh" title="Send Divine Wishes">
+              🪔 <span>${w.reactions?.shubh || Math.floor((w.likes || 1) * 0.2) || 1}</span>
+            </button>
+          </div>
+          <span class="total-score-badge">✨ ${w.likes || 1} Blessings</span>
+        </div>
       `;
-      container.appendChild(card);
+      wallContainer.appendChild(card);
     });
 
-    document.querySelectorAll('.wish-heart-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
+    wallContainer.querySelectorAll('.reaction-pill').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const id = parseInt(btn.getAttribute('data-id'));
-        const item = state.wishes.find((w) => w.id === id);
+        const type = btn.getAttribute('data-type');
+        const item = state.wishes.find(w => w.id === id);
         if (item) {
+          if (!item.reactions) item.reactions = { prem: 1, aashirwad: 1, shubh: 1 };
+          item.reactions[type] = (item.reactions[type] || 0) + 1;
           item.likes = (item.likes || 0) + 1;
-          btn.querySelector('span').textContent = item.likes;
           localStorage.setItem('wedding_wishes_wall', JSON.stringify(state.wishes));
-          btn.style.transform = 'scale(1.25)';
-          setTimeout(() => btn.style.transform = 'scale(1)', 200);
+          renderPodium();
+          renderWall();
+          showToast('🌸 Blessed! Leaderboard updated.');
         }
       });
     });
   }
 
-  renderWishes();
+  renderPodium();
+  renderWall();
 
-  if (postBtn) {
-    postBtn.addEventListener('click', () => {
-      const name = document.getElementById('rsvpName')?.value.trim() || prompt('Enter your name / family:');
-      if (!name) return;
-      const text = document.getElementById('rsvpMessage')?.value.trim() || prompt('Enter your warm wish for Deepanshu & Deepanjali:');
-      if (!text) return;
+  // Filter buttons
+  filterTopBtn?.addEventListener('click', () => {
+    state.wishesFilter = 'top';
+    filterTopBtn.classList.add('active');
+    filterLatestBtn?.classList.remove('active');
+    renderWall();
+  });
 
-      const newWish = {
-        id: Date.now(),
-        name,
-        text,
-        date: 'Just now',
-        likes: 1
-      };
+  filterLatestBtn?.addEventListener('click', () => {
+    state.wishesFilter = 'latest';
+    filterLatestBtn.classList.add('active');
+    filterTopBtn?.classList.remove('active');
+    renderWall();
+  });
 
-      state.wishes.unshift(newWish);
-      localStorage.setItem('wedding_wishes_wall', JSON.stringify(state.wishes));
-      renderWishes();
-      showToast('💌 Wish posted to the wall!');
-      triggerConfetti();
+  // Modal Open & Close
+  postBtn?.addEventListener('click', () => {
+    if (modal) modal.classList.add('active');
+    const authorInput = document.getElementById('wishAuthorInput');
+    if (authorInput && !authorInput.value) {
+      authorInput.value = state.guestName || document.getElementById('rsvpName')?.value || '';
+    }
+  });
+
+  closeModal?.addEventListener('click', () => {
+    if (modal) modal.classList.remove('active');
+  });
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
     });
   }
+
+  // Quick Suggestion Pills
+  document.querySelectorAll('.quick-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const msg = pill.getAttribute('data-msg');
+      const textarea = document.getElementById('wishTextInput');
+      if (textarea && msg) {
+        textarea.value = msg;
+        textarea.focus();
+      }
+    });
+  });
+
+  // Form Submit
+  postForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('wishAuthorInput')?.value.trim();
+    const team = document.getElementById('wishTeamSelect')?.value || 'both';
+    const text = document.getElementById('wishTextInput')?.value.trim();
+
+    if (!name || !text) {
+      showToast('Please enter your name and blessing');
+      return;
+    }
+
+    const newWish = {
+      id: Date.now(),
+      name,
+      team,
+      text,
+      date: 'Just now',
+      likes: 6,
+      reactions: { prem: 3, aashirwad: 2, shubh: 1 }
+    };
+
+    state.wishes.unshift(newWish);
+    localStorage.setItem('wedding_wishes_wall', JSON.stringify(state.wishes));
+    renderPodium();
+    renderWall();
+
+    if (modal) modal.classList.remove('active');
+    postForm.reset();
+    showToast('🏆 Blessing submitted to Leaderboard!');
+    triggerConfetti();
+    try { weddingAudio.playChime(); } catch(e){}
+  });
 }
 
 function escapeHtml(str) {
@@ -1356,6 +1534,7 @@ function startApp() {
   initPersonalizedGreeting();
   initShareGenerator();
   initGuestbook();
+  initCheerBattle();
 
   // Music toggle button
   document.getElementById('musicToggleBtn')?.addEventListener('click', () => {

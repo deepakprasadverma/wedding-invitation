@@ -95,6 +95,14 @@ A handcrafted, luxury interactive digital wedding invitation website matching th
 15. **Hotel Vinayak Venue Showcase**:
     - Illuminated luxury palace hotel banquet photo showcase integrated directly within the Venue & Directions section.
 
+16. **Team Groom vs Team Bride Cheer Battle (लड़के वाले vs लड़की वाले)**:
+    - Interactive squad cheer meter with real-time percentage split bar, animated cheer counters, and floating cheering emoji effects (+1 Cheer for Team Deepanshu / Team Deepanjali).
+
+17. **Wishes Leaderboard & Hall of Blessings (शुभकामनाओं का लीडरबोर्ड)**:
+    - Grand blessings podium showcasing Top 3 rankings (`👑 #1 Grand Blessing`, `🥈 #2 Royal Blessing`, `🥉 #3 Auspicious`).
+    - Multi-reaction blessing pills: ❤️ Prem (Love), 🌸 Aashirwad (Blessings), and 🪔 Shubhkaamna (Divine wishes).
+    - Dynamic filter tabs (*🔥 Top Loved* vs *✨ Latest*), side-affiliation badges (*Team Groom*, *Team Bride*, *Family & Friends*), and interactive "Post Blessing" modal with 1-tap Vedic greeting suggestions.
+
 ---
 
 ## 🌐 Live Deployments

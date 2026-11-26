@@ -2448,3 +2448,494 @@ html, body {
   color: #d8ded9;
   line-height: 1.4;
 }
+
+
+/* ========================================================
+   Wedding Cheer Battle (Team Groom vs Team Bride)
+   ======================================================== */
+
+.cheer-battle-section {
+  padding: 24px 18px 16px;
+  text-align: center;
+}
+
+.cheer-battle-card {
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: var(--shadow-soft);
+  max-width: 520px;
+  margin: 14px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cheer-battle-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1b4965, #d4af37, #c1121f);
+}
+
+.cheer-teams-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cheer-team-info {
+  flex: 1;
+  text-align: center;
+}
+
+.cheer-team-info .team-icon {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cheer-team-info .team-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e2c20;
+}
+
+.cheer-team-info.groom-side .team-name {
+  color: #1b4965;
+}
+
+.cheer-team-info.bride-side .team-name {
+  color: #a81c3c;
+}
+
+.team-hindi-label {
+  font-family: 'Rozha One', 'Montserrat', serif;
+  font-size: 11px;
+  color: #88651a;
+  margin-top: 1px;
+}
+
+.team-score {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.groom-side .team-score {
+  color: #1b4965;
+}
+
+.bride-side .team-score {
+  color: #a81c3c;
+}
+
+.cheer-vs-badge {
+  background: linear-gradient(135deg, #d4af37, #88651a);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+  flex-shrink: 0;
+}
+
+/* Percentage Meter Bar */
+.cheer-meter-wrapper {
+  display: flex;
+  height: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0f0f0;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.cheer-bar-fill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.cheer-bar-fill.groom-fill {
+  background: linear-gradient(90deg, #1b4965, #2b6cb0);
+}
+
+.cheer-bar-fill.bride-fill {
+  background: linear-gradient(90deg, #c53030, #e53e3e);
+}
+
+.meter-pct {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  padding: 0 6px;
+}
+
+/* Cheer Action Buttons */
+.cheer-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cheer-vote-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cheer-vote-btn:active {
+  transform: scale(0.96);
+}
+
+.groom-vote-btn {
+  background: linear-gradient(135deg, #1b4965 0%, #2b6cb0 100%);
+  color: #ffffff;
+}
+
+.groom-vote-btn:hover {
+  box-shadow: 0 6px 16px rgba(27, 73, 101, 0.35);
+  transform: translateY(-2px);
+}
+
+.bride-vote-btn {
+  background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
+  color: #ffffff;
+}
+
+.bride-vote-btn:hover {
+  box-shadow: 0 6px 16px rgba(197, 48, 48, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ========================================================
+   Wishes Leaderboard & Podium
+   ======================================================== */
+
+.wishes-podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  max-width: 520px;
+  margin: 16px auto 14px;
+  padding: 0 6px;
+}
+
+.podium-card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 16px 16px 12px 12px;
+  padding: 14px 8px 10px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.podium-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Rank 1: Gold / Center */
+.podium-card.rank-1 {
+  order: 2;
+  border: 2px solid #d4af37;
+  background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.28);
+  padding-top: 18px;
+}
+
+/* Rank 2: Silver / Left */
+.podium-card.rank-2 {
+  order: 1;
+  border: 1.5px solid #a0aec0;
+}
+
+/* Rank 3: Bronze / Right */
+.podium-card.rank-3 {
+  order: 3;
+  border: 1.5px solid #cd7f32;
+}
+
+.podium-badge {
+  font-size: 22px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+
+.rank-1 .podium-badge {
+  font-size: 28px;
+  animation: pulseCrown 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseCrown {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15) rotate(4deg); }
+}
+
+.podium-author {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e2c20;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.podium-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10.5px;
+  color: #555e56;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.podium-score {
+  display: inline-block;
+  background: #fdfaf0;
+  border: 1px solid var(--gold-primary);
+  color: #88651a;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  font-family: var(--font-display);
+}
+
+/* Leaderboard Controls (Tabs & Post Button) */
+.leaderboard-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 520px;
+  margin: 14px auto 12px;
+  padding: 0 4px;
+}
+
+.leaderboard-tabs {
+  display: flex;
+  gap: 4px;
+  background: #f4efe6;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.lead-tab-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: #636b64;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lead-tab-btn.active {
+  background: #ffffff;
+  color: #88651a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.post-blessing-trigger {
+  margin: 0 !important;
+  padding: 8px 14px !important;
+  font-size: 11.5px !important;
+}
+
+/* Enhanced Wish Cards */
+.wishes-wall-container {
+  max-width: 520px;
+  margin: 10px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wish-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.wish-card.featured-rank-1 {
+  border-color: #d4af37;
+  background: linear-gradient(135deg, #ffffff 0%, #fffdfa 100%);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.18);
+}
+
+.wish-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.wish-author-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.wish-author-name {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e2e21;
+}
+
+.team-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  text-transform: uppercase;
+}
+
+.team-badge.groom {
+  background: #ebf8ff;
+  color: #2b6cb0;
+  border: 1px solid #bee3f8;
+}
+
+.team-badge.bride {
+  background: #fff5f5;
+  color: #c53030;
+  border: 1px solid #fed7d7;
+}
+
+.team-badge.both {
+  background: #f0fff4;
+  color: #276749;
+  border: 1px solid #c6f6d5;
+}
+
+.wish-rank-pill {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 800;
+  background: #fcf6e5;
+  border: 1px solid var(--gold-primary);
+  color: #88651a;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.wish-reactions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.25);
+}
+
+.wish-reaction-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.reaction-pill {
+  background: #fbf9f4;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 14px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #404840;
+  transition: all 0.2s ease;
+}
+
+.reaction-pill:hover, .reaction-pill:active {
+  background: #fce2aa;
+  border-color: #d4af37;
+  transform: scale(1.1);
+}
+
+.total-score-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #88651a;
+  font-family: var(--font-display);
+}
+
+/* Quick Suggestion Pills inside Modal */
+.quick-wish-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.quick-pill {
+  background: #faf7f2;
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 11px;
+  color: #555e56;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-pill:hover {
+  background: #fce2aa;
+  color: #243827;
+  border-color: var(--gold-primary);
+}
