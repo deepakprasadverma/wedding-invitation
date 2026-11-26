@@ -852,50 +852,6 @@
           <div id="wishesWall" class="wishes-wall-container"></div>
         </section>
 
-        <!-- MODAL: POST A BLESSING -->
-        <div id="postWishModal" class="modal-overlay" role="dialog" aria-modal="true">
-          <div class="modal-card">
-            <button id="closeWishModalBtn" class="close-modal-btn" aria-label="Close dialog">&times;</button>
-            <div style="font-size: 36px; margin-bottom: 6px;">💌</div>
-            <h3 style="font-family: var(--font-display); font-size: 20px; color: #1f3022;">Send Your Blessing</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin: 4px 0 16px;">
-              Write your warm congratulations for Deepanshu &amp; Deepanjali
-            </p>
-
-            <form id="postWishForm">
-              <div class="form-group" style="text-align: left;">
-                <label class="form-label" for="wishAuthorInput">Your Full Name / Family</label>
-                <input type="text" id="wishAuthorInput" class="form-input" placeholder="e.g. Rameshwar Verma &amp; Family" required>
-              </div>
-
-              <div class="form-group" style="text-align: left;">
-                <label class="form-label" for="wishTeamSelect">Which side are you blessing from?</label>
-                <select id="wishTeamSelect" class="form-select">
-                  <option value="groom">🕺 Team Groom (वर पक्ष / लड़के वाले)</option>
-                  <option value="bride">💃 Team Bride (वधू पक्ष / लड़की वाले)</option>
-                  <option value="both" selected>🌸 Mutual Well Wisher (सपरिवार / मित्रगण)</option>
-                </select>
-              </div>
-
-              <div class="form-group" style="text-align: left;">
-                <label class="form-label" for="wishTextInput">Your Warm Blessing / Wish</label>
-                <textarea id="wishTextInput" class="form-textarea" rows="3" placeholder="Write your heartfelt blessing..." required></textarea>
-                
-                <!-- Quick Suggestion Pills -->
-                <div class="quick-wish-pills">
-                  <button type="button" class="quick-pill" data-msg="Wishing you a lifetime of boundless love, prosperity, and togetherness! 🌸">"Lifetime of Love &amp; Prosperity! 🌸"</button>
-                  <button type="button" class="quick-pill" data-msg="सदा सुहागन रहो! वर-वधू को भगवान शिव-पार्वती का अखंड आशीर्वाद प्राप्त हो! 🪔">"अखंड सौभाग्य का आशीर्वाद 🪔"</button>
-                  <button type="button" class="quick-pill" data-msg="Heartiest congratulations to the gorgeous couple! Looking forward to celebrating at Hotel Vinayak! ✨">"Congratulations &amp; Joy! ✨"</button>
-                </div>
-              </div>
-
-              <button type="submit" class="action-btn filled" style="width: 100%; padding: 12px; font-size: 14px;">
-                Submit Blessing to Leaderboard ✨
-              </button>
-            </form>
-          </div>
-        </div>
-
         <!-- FOOTER -->
         <footer style="text-align: center; padding: 24px 18px 40px; color: var(--text-muted); font-size: 12px;">
           <p style="font-family: var(--font-script); font-size: 28px; color: var(--gold-bronze); margin-bottom: 4px;">
@@ -908,6 +864,52 @@
       </div> <!-- End .invitation-body -->
     </div> <!-- End .invitation-container -->
   </main>
+
+  <!-- ========================================================
+       MODAL: POST A BLESSING
+       ======================================================== -->
+  <div id="postWishModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="closeWishModalBtn" class="close-modal-btn" aria-label="Close dialog">&times;</button>
+      <div style="font-size: 36px; margin-bottom: 6px;">💌</div>
+      <h3 style="font-family: var(--font-display); font-size: 20px; color: #1f3022;">Send Your Blessing</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin: 4px 0 16px;">
+        Write your warm congratulations for Deepanshu &amp; Deepanjali
+      </p>
+
+      <form id="postWishForm">
+        <div class="form-group" style="text-align: left;">
+          <label class="form-label" for="wishAuthorInput">Your Full Name / Family</label>
+          <input type="text" id="wishAuthorInput" class="form-input" placeholder="e.g. Rameshwar Verma &amp; Family" required>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+          <label class="form-label" for="wishTeamSelect">Which side are you blessing from?</label>
+          <select id="wishTeamSelect" class="form-select">
+            <option value="groom">🕺 Team Groom (वर पक्ष / लड़के वाले)</option>
+            <option value="bride">💃 Team Bride (वधू पक्ष / लड़की वाले)</option>
+            <option value="both" selected>🌸 Mutual Well Wisher (सपरिवार / मित्रगण)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+          <label class="form-label" for="wishTextInput">Your Warm Blessing / Wish</label>
+          <textarea id="wishTextInput" class="form-textarea" rows="3" placeholder="Write your heartfelt blessing..." required></textarea>
+          
+          <!-- Quick Suggestion Pills -->
+          <div class="quick-wish-pills">
+            <button type="button" class="quick-pill" data-msg="Wishing you a lifetime of boundless love, prosperity, and togetherness! 🌸">"Lifetime of Love &amp; Prosperity! 🌸"</button>
+            <button type="button" class="quick-pill" data-msg="सदा सुहागन रहो! वर-वधू को भगवान शिव-पार्वती का अखंड आशीर्वाद प्राप्त हो! 🪔">"अखंड सौभाग्य का आशीर्वाद 🪔"</button>
+            <button type="button" class="quick-pill" data-msg="Heartiest congratulations to the gorgeous couple! Looking forward to celebrating at Hotel Vinayak! ✨">"Congratulations &amp; Joy! ✨"</button>
+          </div>
+        </div>
+
+        <button type="submit" class="action-btn filled" style="width: 100%; padding: 12px; font-size: 14px;">
+          Submit Blessing to Leaderboard ✨
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- ========================================================
        MODAL: DIGITAL GUEST PASS & CONFIRMATION

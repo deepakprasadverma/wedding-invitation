@@ -182,6 +182,8 @@ html, body {
   border-radius: 28px;
   overflow: hidden;
   transition: max-width 0.4s ease, border-radius 0.4s ease;
+  container-type: inline-size;
+  container-name: inviteCard;
 }
 
 /* Before gate is opened, lock container height to screen/frame so seal is perfectly centered */
@@ -193,7 +195,7 @@ html, body {
 
 .invitation-container.gate-opened {
   height: auto;
-  overflow: visible;
+  overflow-x: clip; /* Clip any horizontal bleed on laptop/desktop without horizontal scroll */
 }
 
 .app-viewport.full-width-mode .invitation-container {
@@ -336,10 +338,13 @@ html, body {
    ======================================================== */
 .invitation-body {
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
   background: var(--bg-cream);
   position: relative;
   padding-bottom: 70px;
+  overflow-x: clip;
+  box-sizing: border-box;
   opacity: 0;
   transform: scale(0.97);
   transition: opacity 1s ease 0.4s, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
@@ -1971,7 +1976,9 @@ html, body {
   border-radius: 20px;
   padding: 24px 20px;
   box-shadow: var(--shadow-soft);
-  max-width: 520px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 14px auto 0;
   text-align: center;
   position: relative;
@@ -2173,15 +2180,23 @@ html, body {
 
 .social-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
-  max-width: 560px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
 }
 
-@media (max-width: 540px) {
+@container inviteCard (min-width: 650px) {
   .social-cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .app-viewport.full-width-mode .social-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -2189,13 +2204,17 @@ html, body {
   background: #ffffff;
   border: 1px solid rgba(212, 175, 55, 0.35);
   border-radius: 16px;
-  padding: 18px 14px;
+  padding: 16px 14px;
   text-align: center;
   box-shadow: var(--shadow-soft);
   transition: all 0.28s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .social-platform-card:hover {
@@ -2465,7 +2484,9 @@ html, body {
   border-radius: 20px;
   padding: 20px 16px;
   box-shadow: var(--shadow-soft);
-  max-width: 520px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 14px auto 0;
   position: relative;
   overflow: hidden;
@@ -2646,34 +2667,43 @@ html, body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 8px;
-  max-width: 520px;
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 16px auto 14px;
-  padding: 0 6px;
+  padding: 0;
 }
 
 .podium-card {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 33%;
   background: #ffffff;
-  border-radius: 16px 16px 12px 12px;
-  padding: 14px 8px 10px;
+  border-radius: 14px 14px 10px 10px;
+  padding: 10px 4px 8px;
   text-align: center;
   position: relative;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
   transition: transform 0.3s ease;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .podium-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* Rank 1: Gold / Center */
 .podium-card.rank-1 {
   order: 2;
+  flex: 1.15 1 0;
+  max-width: 38%;
   border: 2px solid #d4af37;
   background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
-  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.28);
-  padding-top: 18px;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+  padding-top: 14px;
+  z-index: 2;
 }
 
 /* Rank 2: Silver / Left */
@@ -2689,13 +2719,14 @@ html, body {
 }
 
 .podium-badge {
-  font-size: 22px;
+  font-size: 18px;
   margin-bottom: 2px;
   display: inline-block;
+  line-height: 1;
 }
 
 .rank-1 .podium-badge {
-  font-size: 28px;
+  font-size: 24px;
   animation: pulseCrown 1.8s infinite ease-in-out;
 }
 
@@ -2706,38 +2737,48 @@ html, body {
 
 .podium-author {
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 700;
   color: #1e2c20;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 2px;
+  padding: 0 2px;
 }
 
 .podium-quote {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 10.5px;
+  font-size: 9.5px;
   color: #555e56;
-  line-height: 1.35;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 6px;
+  word-break: break-word;
+  margin-bottom: 5px;
+  padding: 0 2px;
 }
 
 .podium-score {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #fdfaf0;
   border: 1px solid var(--gold-primary);
   color: #88651a;
   border-radius: 12px;
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 2px 5px;
   font-family: var(--font-display);
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Leaderboard Controls (Tabs & Post Button) */
@@ -2745,10 +2786,12 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  max-width: 520px;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 14px auto 12px;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 .leaderboard-tabs {
@@ -2767,10 +2810,11 @@ html, body {
   font-size: 11px;
   font-weight: 700;
   color: #636b64;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .lead-tab-btn.active {
@@ -2781,13 +2825,16 @@ html, body {
 
 .post-blessing-trigger {
   margin: 0 !important;
-  padding: 8px 14px !important;
-  font-size: 11.5px !important;
+  padding: 8px 12px !important;
+  font-size: 11px !important;
+  white-space: nowrap;
 }
 
 /* Enhanced Wish Cards */
 .wishes-wall-container {
-  max-width: 520px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 10px auto 0;
   display: flex;
   flex-direction: column;
